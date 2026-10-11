@@ -73,10 +73,10 @@ def build_corrector_features(kt, kt_base, cs_proxy, cs_solcast, zenith, mask, do
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--prep", default="results/prep.npz")
-    ap.add_argument("--base", default="results/base_pred.npz")
-    ap.add_argument("--out", default="results")
-    ap.add_argument("--prefix", default="",
+    ap.add_argument("--prep", default=str(C.PREP_PATH))
+    ap.add_argument("--base", default=str(C.RESULTS_DIR / "dwt_base_pred.npz"))
+    ap.add_argument("--out", default=str(C.RESULTS_DIR))
+    ap.add_argument("--prefix", default="dwt_",
                     help="Output filename prefix so DWT-BiLSTM does not overwrite GBM "
                          "(use dwt_ to write dwt_stage2.npz / dwt_stage2.json)")
     args = ap.parse_args()

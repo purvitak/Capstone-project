@@ -1,0 +1,220 @@
+{
+  "config": {
+    "trainer_version": 2,
+    "backend": "torch",
+    "resolution": "10min",
+    "levels": 6,
+    "leaky": false,
+    "epochs": 100,
+    "hidden": 64,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "patience": 15,
+    "val_fraction": 0.2,
+    "smoke": false,
+    "prep": "/Users/purvitak/Documents/GitHub/Capstone-project/data/prepared/prep.npz",
+    "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5"
+  },
+  "folds": [
+    {
+      "first": "2022-01-08",
+      "last": "2022-04-07",
+      "rmse_wm2": 95.3520302734861,
+      "seconds": 30.58262801170349,
+      "training": {
+        "selected_epochs": 31,
+        "epochs_checked": 46,
+        "inner_validation_rmse_wm2": 126.85588993057922,
+        "inner_train_days": 582,
+        "inner_validation_days": 146
+      }
+    },
+    {
+      "first": "2022-04-08",
+      "last": "2022-07-06",
+      "rmse_wm2": 126.31669712329727,
+      "seconds": 19.16439127922058,
+      "training": {
+        "selected_epochs": 14,
+        "epochs_checked": 29,
+        "inner_validation_rmse_wm2": 95.56360583757659,
+        "inner_train_days": 654,
+        "inner_validation_days": 164
+      }
+    },
+    {
+      "first": "2022-07-07",
+      "last": "2022-10-04",
+      "rmse_wm2": 175.44182131862902,
+      "seconds": 84.16408705711365,
+      "training": {
+        "selected_epochs": 78,
+        "epochs_checked": 93,
+        "inner_validation_rmse_wm2": 100.90604842512407,
+        "inner_train_days": 726,
+        "inner_validation_days": 182
+      }
+    },
+    {
+      "first": "2022-10-05",
+      "last": "2023-01-02",
+      "rmse_wm2": 100.06583724112896,
+      "seconds": 48.296306848526,
+      "training": {
+        "selected_epochs": 38,
+        "epochs_checked": 53,
+        "inner_validation_rmse_wm2": 141.79980362921702,
+        "inner_train_days": 798,
+        "inner_validation_days": 200
+      }
+    },
+    {
+      "first": "2023-01-03",
+      "last": "2023-04-02",
+      "rmse_wm2": 79.78390988517711,
+      "seconds": 98.52051186561584,
+      "training": {
+        "selected_epochs": 76,
+        "epochs_checked": 91,
+        "inner_validation_rmse_wm2": 143.23926821594193,
+        "inner_train_days": 870,
+        "inner_validation_days": 218
+      }
+    },
+    {
+      "first": "2023-04-03",
+      "last": "2023-07-01",
+      "rmse_wm2": 103.89653134255947,
+      "seconds": 93.22260403633118,
+      "training": {
+        "selected_epochs": 65,
+        "epochs_checked": 80,
+        "inner_validation_rmse_wm2": 115.08475129512618,
+        "inner_train_days": 942,
+        "inner_validation_days": 236
+      }
+    },
+    {
+      "first": "2023-07-02",
+      "last": "2023-09-29",
+      "rmse_wm2": 162.8814236072475,
+      "seconds": 89.5509991645813,
+      "training": {
+        "selected_epochs": 58,
+        "epochs_checked": 73,
+        "inner_validation_rmse_wm2": 88.4409378457241,
+        "inner_train_days": 1014,
+        "inner_validation_days": 254
+      }
+    },
+    {
+      "first": "2023-09-30",
+      "last": "2023-12-28",
+      "rmse_wm2": 69.60316936069913,
+      "seconds": 47.58126902580261,
+      "training": {
+        "selected_epochs": 26,
+        "epochs_checked": 41,
+        "inner_validation_rmse_wm2": 122.69821912873502,
+        "inner_train_days": 1086,
+        "inner_validation_days": 272
+      }
+    },
+    {
+      "first": "2023-12-29",
+      "last": "2024-03-27",
+      "rmse_wm2": 46.210401532127655,
+      "seconds": 119.73513984680176,
+      "training": {
+        "selected_epochs": 70,
+        "epochs_checked": 85,
+        "inner_validation_rmse_wm2": 118.0446778570785,
+        "inner_train_days": 1158,
+        "inner_validation_days": 290
+      }
+    },
+    {
+      "first": "2024-03-28",
+      "last": "2024-06-25",
+      "rmse_wm2": 110.8604646975322,
+      "seconds": 100.11759400367737,
+      "training": {
+        "selected_epochs": 53,
+        "epochs_checked": 68,
+        "inner_validation_rmse_wm2": 107.43550277959035,
+        "inner_train_days": 1230,
+        "inner_validation_days": 308
+      }
+    },
+    {
+      "first": "2024-06-26",
+      "last": "2024-09-23",
+      "rmse_wm2": 144.65046247688886,
+      "seconds": 111.61781787872314,
+      "training": {
+        "selected_epochs": 56,
+        "epochs_checked": 71,
+        "inner_validation_rmse_wm2": 104.02311891810247,
+        "inner_train_days": 1302,
+        "inner_validation_days": 326
+      }
+    },
+    {
+      "first": "2024-09-24",
+      "last": "2024-12-22",
+      "rmse_wm2": 99.23546561599488,
+      "seconds": 63.43901181221008,
+      "training": {
+        "selected_epochs": 27,
+        "epochs_checked": 42,
+        "inner_validation_rmse_wm2": 108.88148433381126,
+        "inner_train_days": 1374,
+        "inner_validation_days": 344
+      }
+    },
+    {
+      "first": "2024-12-23",
+      "last": "2025-03-22",
+      "rmse_wm2": 53.04899774637225,
+      "seconds": 167.11673283576965,
+      "training": {
+        "selected_epochs": 76,
+        "epochs_checked": 91,
+        "inner_validation_rmse_wm2": 106.15989440472887,
+        "inner_train_days": 1446,
+        "inner_validation_days": 362
+      }
+    },
+    {
+      "first": "2025-03-23",
+      "last": "2025-06-20",
+      "rmse_wm2": 123.88897661264959,
+      "seconds": 162.9399082660675,
+      "training": {
+        "selected_epochs": 66,
+        "epochs_checked": 81,
+        "inner_validation_rmse_wm2": 102.80542123563899,
+        "inner_train_days": 1518,
+        "inner_validation_days": 380
+      }
+    },
+    {
+      "first": "2025-06-21",
+      "last": "2025-07-23",
+      "rmse_wm2": 149.38495883881225,
+      "seconds": 164.27156615257263,
+      "training": {
+        "selected_epochs": 65,
+        "epochs_checked": 80,
+        "inner_validation_rmse_wm2": 114.3918182690782,
+        "inner_train_days": 1590,
+        "inner_validation_days": 398
+      }
+    }
+  ],
+  "n_oof_days": 1293,
+  "oof_rmse_wm2": 115.24276804671472,
+  "oof_mean3_rmse_wm2": 125.22213703185193,
+  "oof_skill_vs_mean3": 0.07969332916430605
+}

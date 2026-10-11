@@ -1,0 +1,73 @@
+{
+  "source_dwt": "/Users/purvitak/Documents/GitHub/Capstone-project/results/dwt_10min_150_paper/dwt_base_pred.npz",
+  "source_context": "/Users/purvitak/Documents/GitHub/Capstone-project/results/context_hgb/dwt_base_pred.npz",
+  "training_days": 969,
+  "validation_days": 324,
+  "validation_period": [
+    "2024-09-03",
+    "2025-07-23"
+  ],
+  "descriptor_names": [
+    "previous_day_kt_mean",
+    "previous_day_kt_std",
+    "previous_day_air_temp_mean",
+    "previous_day_rh_mean"
+  ],
+  "cluster_train_counts": [
+    331,
+    338,
+    300
+  ],
+  "dwt_weight_by_cluster": [
+    0.5,
+    0.30000000000000004,
+    0.1
+  ],
+  "global_train_tuned_dwt_weight": 0.30000000000000004,
+  "soft_membership_temperature": 1.19211814859777,
+  "validation_metrics": {
+    "dwt_bilstm": {
+      "rmse_wm2": 108.97134347328789,
+      "monsoon_rmse_wm2": 158.4492487095646,
+      "non_monsoon_rmse_wm2": 83.97506648852605
+    },
+    "context_hgb": {
+      "rmse_wm2": 105.31812038184974,
+      "monsoon_rmse_wm2": 152.47527353656508,
+      "non_monsoon_rmse_wm2": 81.61290815084574
+    },
+    "fixed_50_50": {
+      "rmse_wm2": 104.20042320289124,
+      "monsoon_rmse_wm2": 152.14204677242668,
+      "non_monsoon_rmse_wm2": 79.8631876963936
+    },
+    "global_train_tuned": {
+      "rmse_wm2": 103.92908666569433,
+      "monsoon_rmse_wm2": 151.46137730109874,
+      "non_monsoon_rmse_wm2": 79.85234769052913
+    },
+    "soft_regime_gate": {
+      "rmse_wm2": 103.8047268196734,
+      "monsoon_rmse_wm2": 151.4433776879314,
+      "non_monsoon_rmse_wm2": 79.6437973677208
+    },
+    "dwt_stage2_reference": {
+      "rmse_wm2": 105.69689139117713,
+      "monsoon_rmse_wm2": 154.42038836352611,
+      "non_monsoon_rmse_wm2": 80.94526171044808
+    }
+  },
+  "gate_rmse_difference_95pct_block_bootstrap_ci_wm2": {
+    "fixed_50_50": [
+      -1.4693823989341248,
+      0.6503334988517987
+    ],
+    "global_train_tuned": [
+      -0.4498258317314427,
+      0.20988581839087558
+    ]
+  },
+  "bootstrap_block_days": 7,
+  "test_scored": false,
+  "note": "Gate is fit on early OOF days and scored on later OOF days; no held-out test prediction is emitted."
+}

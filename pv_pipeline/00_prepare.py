@@ -1,7 +1,7 @@
 """Stage 0 — turn the merged Solcast CSV into leak-checked per-day arrays and features.
 
 Implements WORKFLOW.md section 7, including the day-completeness policy of section 7a.
-Outputs results/prep.npz, results/prep.json and results/cs_clim_table.npy.
+Outputs data/prepared/prep.npz, prep.json and cs_clim_table.npy.
 
 Two deliberate deviations from common.clearsky_climatology, both to make leak test 2
 pass by construction:
@@ -406,7 +406,7 @@ def main() -> None:
     ap.add_argument("--csv", required=True, help="glob or path to the merged Solcast CSV")
     ap.add_argument("--cs-mode", default="clim",
                     choices=["lagged", "clim", "clim_ratio", "solcast"])
-    ap.add_argument("--out", default="results")
+    ap.add_argument("--out", default=str(C.PREP_PATH.parent))
     args = ap.parse_args()
 
     out = Path(args.out)

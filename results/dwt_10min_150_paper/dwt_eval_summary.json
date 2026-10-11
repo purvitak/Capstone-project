@@ -1,0 +1,167 @@
+{
+  "test_days": 365,
+  "metrics_all": [
+    {
+      "method": "persistence_prev_day",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 123.01660975022598,
+      "mae": 71.09301936542951,
+      "mbe": 0.11726512349430854,
+      "nrmse": 28.691258014404447,
+      "n": 24086,
+      "rmse_hourly": 111.9826346531312,
+      "skill_vs_mean3_pct": -1.5644594898408748,
+      "skill_vs_persistence_pct": 0.0
+    },
+    {
+      "method": "mean3",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 121.121709669051,
+      "mae": 74.10970131502475,
+      "mbe": 0.49667694363349174,
+      "nrmse": 28.249309018647732,
+      "n": 24086,
+      "rmse_hourly": 112.036022132854,
+      "skill_vs_mean3_pct": 0.0,
+      "skill_vs_persistence_pct": 1.5403611634415948
+    },
+    {
+      "method": "monthly_climatology",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 130.5000897426711,
+      "mae": 91.1022753855526,
+      "mbe": -0.4875955696118287,
+      "nrmse": 30.436635778795985,
+      "n": 24086,
+      "rmse_hourly": 122.12862535534863,
+      "skill_vs_mean3_pct": -7.742938981991965,
+      "skill_vs_persistence_pct": -6.083308593562808
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 116.72802267863982,
+      "mae": 74.05423862499781,
+      "mbe": 1.4090994136500372,
+      "nrmse": 27.22456604018025,
+      "n": 24086,
+      "rmse_hourly": 108.18368196826837,
+      "skill_vs_mean3_pct": 3.6274975001726384,
+      "skill_vs_persistence_pct": 5.111982100916757
+    },
+    {
+      "method": "stage2_corrected",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 114.06404890970941,
+      "mae": 72.34607410036988,
+      "mbe": 2.3891407520599506,
+      "nrmse": 26.603245399795362,
+      "n": 24086,
+      "rmse_hourly": 105.66301554369427,
+      "skill_vs_mean3_pct": 5.826916395603821,
+      "skill_vs_persistence_pct": 7.277522001861314
+    }
+  ],
+  "paired_tests": [
+    {
+      "model": "dwt_bilstm",
+      "reference": "mean3",
+      "mean_daily_rmse_diff": -1.1489756567962621,
+      "ci95_lo": -6.685784783676285,
+      "ci95_hi": 3.7819803818109254,
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 0.8921479714877195,
+      "n_days": 365,
+      "better": "dwt_bilstm",
+      "significant": false
+    },
+    {
+      "model": "stage2_corrected",
+      "reference": "dwt_bilstm",
+      "mean_daily_rmse_diff": -2.235606432106937,
+      "ci95_lo": -4.193325874964577,
+      "ci95_hi": -0.1846037206002576,
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 0.0005350947603410144,
+      "n_days": 365,
+      "better": "stage2_corrected",
+      "significant": true
+    },
+    {
+      "model": "stage2_corrected",
+      "reference": "mean3",
+      "mean_daily_rmse_diff": -3.3845820889032003,
+      "ci95_lo": -9.449685962948472,
+      "ci95_hi": 2.454638545938096,
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 0.09963553115875018,
+      "n_days": 365,
+      "better": "stage2_corrected",
+      "significant": false
+    },
+    {
+      "model": "dwt_bilstm",
+      "reference": "monthly_climatology",
+      "mean_daily_rmse_diff": -16.678845839296798,
+      "ci95_lo": -25.304685923381076,
+      "ci95_hi": -8.31474681864661,
+      "ci_excludes_zero": true,
+      "wilcoxon_p": 6.988558691408517e-10,
+      "n_days": 365,
+      "better": "dwt_bilstm",
+      "significant": true
+    },
+    {
+      "model": "dwt_bilstm",
+      "reference": "persistence_prev_day",
+      "mean_daily_rmse_diff": -1.1840989567437588,
+      "ci95_lo": -6.035782782019613,
+      "ci95_hi": 4.132565275452136,
+      "ci_excludes_zero": false,
+      "wilcoxon_p": 0.6740171064970668,
+      "n_days": 365,
+      "better": "dwt_bilstm",
+      "significant": false
+    }
+  ],
+  "intervals": [
+    {
+      "season": "all",
+      "nominal_pct": 80.0,
+      "picp_pct": 77.33122976002657,
+      "mean_width_wm2": 222.5276379367067,
+      "pinaw_pct": 22.076154557212966,
+      "winkler_score": 335.1652304501221,
+      "n": 24086
+    },
+    {
+      "season": "monsoon",
+      "nominal_pct": 80.0,
+      "picp_pct": 73.0462332785731,
+      "mean_width_wm2": 331.5859894398139,
+      "pinaw_pct": 35.27510525955467,
+      "winkler_score": 481.6491528829642,
+      "n": 8522
+    },
+    {
+      "season": "non_monsoon",
+      "nominal_pct": 80.0,
+      "picp_pct": 79.67746080699048,
+      "mean_width_wm2": 162.81321545473037,
+      "pinaw_pct": 16.232623674449687,
+      "winkler_score": 254.9586006009394,
+      "n": 15564
+    }
+  ],
+  "headline": {
+    "stage1_rmse": 116.72802267863982,
+    "stage2_rmse": 114.06404890970941,
+    "mean3_rmse": 121.121709669051,
+    "monthly_clim_rmse": 130.5000897426711
+  }
+}

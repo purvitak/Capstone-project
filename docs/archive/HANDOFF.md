@@ -1,3 +1,7 @@
+> Historical document preserved from the previous layout. Some scripts and
+> results mentioned below are absent. Use [current run instructions](../../README.md)
+> and [dashboard scope](../DASHBOARD.md) for the reorganized project.
+
 # Handoff: day-ahead GHI pipeline (for another model / coder)
 
 **Read this file first.** Then `RESEARCH.md` (claim) and `WORKFLOW.md` (data protocol + measured GBM facts). Do not revive NeuralProphet.

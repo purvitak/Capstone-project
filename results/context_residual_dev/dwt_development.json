@@ -1,0 +1,67 @@
+{
+  "config": {
+    "trainer_version": 3,
+    "backend": "torch",
+    "resolution": "10min",
+    "levels": 6,
+    "leaky": false,
+    "epochs": 100,
+    "hidden": 32,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "patience": 15,
+    "val_fraction": 0.2,
+    "smoke": false,
+    "prep": "/Users/purvitak/Documents/GitHub/Capstone-project/data/prepared/prep.npz",
+    "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+    "features": "context",
+    "loss": "ghi",
+    "residual_baseline": "mean3"
+  },
+  "folds": [
+    {
+      "first": "2022-07-07",
+      "last": "2022-10-04",
+      "rmse_wm2": 171.48616604172588,
+      "seconds": 10.234925031661987,
+      "training": {
+        "selected_epochs": 12,
+        "epochs_checked": 27,
+        "inner_validation_rmse_wm2": 101.2691726290352,
+        "inner_train_days": 726,
+        "inner_validation_days": 182
+      }
+    },
+    {
+      "first": "2023-12-29",
+      "last": "2024-03-27",
+      "rmse_wm2": 47.36729714896195,
+      "seconds": 12.883028030395508,
+      "training": {
+        "selected_epochs": 8,
+        "epochs_checked": 23,
+        "inner_validation_rmse_wm2": 111.741249112317,
+        "inner_train_days": 1158,
+        "inner_validation_days": 290
+      }
+    },
+    {
+      "first": "2025-03-23",
+      "last": "2025-06-20",
+      "rmse_wm2": 131.05507283216826,
+      "seconds": 15.650410175323486,
+      "training": {
+        "selected_epochs": 7,
+        "epochs_checked": 22,
+        "inner_validation_rmse_wm2": 102.17975374692928,
+        "inner_train_days": 1518,
+        "inner_validation_days": 380
+      }
+    }
+  ],
+  "n_oof_days": 270,
+  "oof_rmse_wm2": 129.3099380057091,
+  "oof_mean3_rmse_wm2": 130.71697821428407,
+  "oof_skill_vs_mean3": 0.010764020311641476
+}

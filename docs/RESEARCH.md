@@ -45,8 +45,8 @@ Target internally: **kt**. Published scores: **GHI W/m², daylight**, plus hourl
 ## Commands
 
 ```text
-python 01_base_dwt_bilstm.py --resolution hourly --smoke
-python 01_base_dwt_bilstm.py --resolution 10min --resume
-python 02_corrector.py --base results/dwt_base_pred.npz --prefix dwt_
-python analysis_regimes.py --base results/dwt_base_pred.npz --stage2 results/dwt_stage2.npz
+python pv_pipeline/01_base_dwt_bilstm.py --resolution hourly --smoke
+python pv_pipeline/01_base_dwt_bilstm.py --resolution 10min --resume
+python pv_pipeline/02_corrector.py --base results/dwt_base_pred.npz --prefix dwt_
+python pv_pipeline/analysis_regimes.py --base results/dwt_base_pred.npz --stage2 results/dwt_stage2.npz
 ```

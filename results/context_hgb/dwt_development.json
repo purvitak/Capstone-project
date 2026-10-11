@@ -1,0 +1,135 @@
+{
+  "config": {
+    "trainer_version": 3,
+    "backend": "hgb",
+    "resolution": "10min",
+    "levels": 6,
+    "leaky": false,
+    "epochs": 15,
+    "hidden": 64,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "patience": 15,
+    "val_fraction": 0.2,
+    "smoke": false,
+    "prep": "/Users/purvitak/Documents/GitHub/Capstone-project/data/prepared/prep.npz",
+    "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+    "features": "context",
+    "loss": "kt",
+    "residual_baseline": "none"
+  },
+  "folds": [
+    {
+      "first": "2022-07-07",
+      "last": "2022-10-04",
+      "rmse_wm2": 160.90827023178187,
+      "seconds": 3.4169762134552,
+      "training": {}
+    },
+    {
+      "first": "2023-12-29",
+      "last": "2024-03-27",
+      "rmse_wm2": 47.6364022175051,
+      "seconds": 2.1638641357421875,
+      "training": {}
+    },
+    {
+      "first": "2025-03-23",
+      "last": "2025-06-20",
+      "rmse_wm2": 125.29726977528463,
+      "seconds": 2.286040782928467,
+      "training": {}
+    },
+    {
+      "first": "2022-01-08",
+      "last": "2022-04-07",
+      "rmse_wm2": 83.55753810672262,
+      "seconds": 1.4421639442443848,
+      "training": {}
+    },
+    {
+      "first": "2022-04-08",
+      "last": "2022-07-06",
+      "rmse_wm2": 117.66659489730185,
+      "seconds": 0.6114180088043213,
+      "training": {}
+    },
+    {
+      "first": "2022-10-05",
+      "last": "2023-01-02",
+      "rmse_wm2": 92.13928220675841,
+      "seconds": 0.7179288864135742,
+      "training": {}
+    },
+    {
+      "first": "2023-01-03",
+      "last": "2023-04-02",
+      "rmse_wm2": 73.48605102900999,
+      "seconds": 0.7835919857025146,
+      "training": {}
+    },
+    {
+      "first": "2023-04-03",
+      "last": "2023-07-01",
+      "rmse_wm2": 104.83809138945773,
+      "seconds": 0.8177940845489502,
+      "training": {}
+    },
+    {
+      "first": "2023-07-02",
+      "last": "2023-09-29",
+      "rmse_wm2": 158.17883141495335,
+      "seconds": 0.893700122833252,
+      "training": {}
+    },
+    {
+      "first": "2023-09-30",
+      "last": "2023-12-28",
+      "rmse_wm2": 61.77969238771547,
+      "seconds": 0.953711986541748,
+      "training": {}
+    },
+    {
+      "first": "2024-03-28",
+      "last": "2024-06-25",
+      "rmse_wm2": 116.18925580974417,
+      "seconds": 1.066100835800171,
+      "training": {}
+    },
+    {
+      "first": "2024-06-26",
+      "last": "2024-09-23",
+      "rmse_wm2": 142.80107255806746,
+      "seconds": 1.11940598487854,
+      "training": {}
+    },
+    {
+      "first": "2024-09-24",
+      "last": "2024-12-22",
+      "rmse_wm2": 93.89107947443347,
+      "seconds": 1.2589421272277832,
+      "training": {}
+    },
+    {
+      "first": "2024-12-23",
+      "last": "2025-03-22",
+      "rmse_wm2": 39.43966394730822,
+      "seconds": 1.6025300025939941,
+      "training": {}
+    },
+    {
+      "first": "2025-06-21",
+      "last": "2025-07-23",
+      "rmse_wm2": 137.35512466695965,
+      "seconds": 1.4388689994812012,
+      "training": {}
+    }
+  ],
+  "n_oof_days": 1293,
+  "oof_rmse_wm2": 110.20753032011616,
+  "oof_mean3_rmse_wm2": 125.22213703185193,
+  "oof_skill_vs_mean3": 0.11990377314768719,
+  "expected_oof_days": 1293,
+  "complete_oof": true
+}

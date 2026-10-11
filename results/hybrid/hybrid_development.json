@@ -1,0 +1,181 @@
+{
+  "config": {
+    "model": "fixed_dwt_bilstm_context_hgb_blend",
+    "weight": 0.5,
+    "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+    "sources": {
+      "dwt": "/Users/purvitak/Documents/GitHub/Capstone-project/results/scaled_100epochs/dwt_base_pred.npz",
+      "context": "/Users/purvitak/Documents/GitHub/Capstone-project/results/context_hgb/dwt_base_pred.npz"
+    },
+    "source_configs": {
+      "dwt": {
+        "backend": "torch",
+        "batch_size": 32,
+        "epochs": 100,
+        "hidden": 64,
+        "leaky": false,
+        "learning_rate": 0.001,
+        "levels": 6,
+        "patience": 15,
+        "prep": "/Users/purvitak/Documents/GitHub/Capstone-project/data/prepared/prep.npz",
+        "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+        "resolution": "10min",
+        "seed": 42,
+        "smoke": false,
+        "trainer_version": 2,
+        "val_fraction": 0.2
+      },
+      "context": {
+        "backend": "hgb",
+        "batch_size": 32,
+        "epochs": 15,
+        "features": "context",
+        "hidden": 64,
+        "leaky": false,
+        "learning_rate": 0.001,
+        "levels": 6,
+        "loss": "kt",
+        "patience": 15,
+        "prep": "/Users/purvitak/Documents/GitHub/Capstone-project/data/prepared/prep.npz",
+        "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+        "residual_baseline": "none",
+        "resolution": "10min",
+        "seed": 42,
+        "smoke": false,
+        "trainer_version": 3,
+        "val_fraction": 0.2
+      }
+    },
+    "source_sha256": {
+      "dwt": "fa4c62e06744a4a98b4dab950d3d6de4a2563d1efc92c16d293256a2230f6462",
+      "context": "be86730a839f0f054760886399b82dc978b271f10199b47d4de57ee4eedd62b1"
+    }
+  },
+  "development_metrics": [
+    {
+      "method": "mean3",
+      "season": "all",
+      "n_days": 1293,
+      "rmse": 125.22213703185193,
+      "mae": 77.23639768918345,
+      "mbe": 0.6373940049954462,
+      "nrmse": 28.70941281029711,
+      "n": 85642
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "all",
+      "n_days": 1293,
+      "rmse": 115.24276804671472,
+      "mae": 74.77736278500142,
+      "mbe": -1.5602890208579112,
+      "nrmse": 26.421464125092157,
+      "n": 85642
+    },
+    {
+      "method": "context_hgb",
+      "season": "all",
+      "n_days": 1293,
+      "rmse": 110.20753032011616,
+      "mae": 68.92706457510097,
+      "mbe": -1.9178892093596984,
+      "nrmse": 25.267045889487942,
+      "n": 85642
+    },
+    {
+      "method": "hybrid",
+      "season": "all",
+      "n_days": 1293,
+      "rmse": 109.11260573423584,
+      "mae": 69.40719016284311,
+      "mbe": -1.7390891151088042,
+      "nrmse": 25.01601486033224,
+      "n": 85642
+    },
+    {
+      "method": "mean3",
+      "season": "monsoon",
+      "n_days": 419,
+      "rmse": 175.165704291882,
+      "mae": 124.12501685965685,
+      "mbe": 3.835003249401389,
+      "nrmse": 53.38538340102884,
+      "n": 29383
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "monsoon",
+      "n_days": 419,
+      "rmse": 158.77052953994178,
+      "mae": 114.55346869157935,
+      "mbe": 15.198051409487856,
+      "nrmse": 48.38861366463838,
+      "n": 29383
+    },
+    {
+      "method": "context_hgb",
+      "season": "monsoon",
+      "n_days": 419,
+      "rmse": 153.71800070780162,
+      "mae": 112.37120808490491,
+      "mbe": 3.1616448464062055,
+      "nrmse": 46.848750653560046,
+      "n": 29383
+    },
+    {
+      "method": "hybrid",
+      "season": "monsoon",
+      "n_days": 419,
+      "rmse": 151.71463807288228,
+      "mae": 110.7642468640202,
+      "mbe": 9.17984812794703,
+      "nrmse": 46.23818431702278,
+      "n": 29383
+    },
+    {
+      "method": "mean3",
+      "season": "non_monsoon",
+      "n_days": 874,
+      "rmse": 88.5725457370324,
+      "mae": 52.74736843011344,
+      "mbe": -1.0326561634821279,
+      "nrmse": 17.980390346436444,
+      "n": 56259
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "non_monsoon",
+      "n_days": 874,
+      "rmse": 83.9735355530519,
+      "mae": 54.00306320888062,
+      "mbe": -10.312849799841713,
+      "nrmse": 17.046782786361174,
+      "n": 56259
+    },
+    {
+      "method": "context_hgb",
+      "season": "non_monsoon",
+      "n_days": 874,
+      "rmse": 78.40965963140498,
+      "mae": 46.23701909351456,
+      "mbe": -4.570832723474232,
+      "nrmse": 15.917305699777637,
+      "n": 56259
+    },
+    {
+      "method": "hybrid",
+      "season": "non_monsoon",
+      "n_days": 874,
+      "rmse": 78.11590983203222,
+      "mae": 47.80719021526697,
+      "mbe": -7.441841261657972,
+      "nrmse": 15.857673948054133,
+      "n": 56259
+    }
+  ],
+  "complete_oof": true,
+  "n_oof_days": 1293,
+  "expected_oof_days": 1293,
+  "test_scored": false,
+  "test_forecast_days": 0
+}

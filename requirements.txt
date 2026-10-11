@@ -1,0 +1,7 @@
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+torch
+streamlit>=1.42,<2

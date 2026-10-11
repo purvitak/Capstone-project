@@ -1,0 +1,78 @@
+{
+  "prediction_file": "/Users/purvitak/Documents/GitHub/Capstone-project/results/dwt_10min_150_paper/dwt_base_pred.npz",
+  "corrected_prediction_file": "/Users/purvitak/Documents/GitHub/Capstone-project/results/dwt_10min_150_paper/dwt_stage2.npz",
+  "test_period": [
+    "2025-07-25",
+    "2026-07-24"
+  ],
+  "native_resolution_minutes": 10,
+  "hourly_aggregation": "mean of all six 10-minute GHI values in each hour",
+  "daylight_hour_rule": "any of the six 10-minute slots passes the local zenith/clear-sky mask",
+  "paper_url": "https://link.springer.com/article/10.1007/s00521-024-09701-2",
+  "paper_reference": "Bekta\u015f & Alta\u015f (2024), Table 4, Trabzon BILSTM",
+  "comparability": "Different sites, datasets, forecast inputs, native resolutions, and possibly daylight definitions; descriptive comparison only.",
+  "model_native_test_daylight_rmse_wm2": 116.72802267863982,
+  "corrected_native_test_daylight_rmse_wm2": 114.06404890970941,
+  "rows": [
+    {
+      "method": "Mumbai DWT-BiLSTM 10min\u2192hourly",
+      "site": "Mumbai",
+      "source": "this project",
+      "n_test_days": 365,
+      "all24_rmse_wm2": 76.24744106745487,
+      "daylight_rmse_wm2": 108.1447876556873,
+      "all24_mae_wm2": 33.383611894519824,
+      "daylight_mae_wm2": 66.92966213229965,
+      "all24_hours": 8760,
+      "daylight_hours": 4354
+    },
+    {
+      "method": "Mumbai corrected 10min\u2192hourly",
+      "site": "Mumbai",
+      "source": "this project",
+      "n_test_days": 365,
+      "all24_rmse_wm2": 74.47768376794016,
+      "daylight_rmse_wm2": 105.63434833560106,
+      "all24_mae_wm2": 32.585816538761364,
+      "daylight_mae_wm2": 65.3245433182335,
+      "all24_hours": 8760,
+      "daylight_hours": 4354
+    },
+    {
+      "method": "Mumbai prior-3-day baseline",
+      "site": "Mumbai",
+      "source": "this project",
+      "n_test_days": 365,
+      "all24_rmse_wm2": 78.96023213901978,
+      "daylight_rmse_wm2": 111.99132131702552,
+      "all24_mae_wm2": 33.432221583755684,
+      "daylight_mae_wm2": 67.00716405961481,
+      "all24_hours": 8760,
+      "daylight_hours": 4354
+    },
+    {
+      "method": "Bekta\u015f & Alta\u015f (2024), Model 1",
+      "site": "Trabzon",
+      "source": "https://link.springer.com/article/10.1007/s00521-024-09701-2",
+      "n_test_days": null,
+      "all24_rmse_wm2": 53.2,
+      "daylight_rmse_wm2": 72.83,
+      "all24_mae_wm2": 27.67,
+      "daylight_mae_wm2": 53.2,
+      "all24_hours": null,
+      "daylight_hours": null
+    },
+    {
+      "method": "Bekta\u015f & Alta\u015f (2024), Model 2",
+      "site": "Trabzon",
+      "source": "https://link.springer.com/article/10.1007/s00521-024-09701-2",
+      "n_test_days": null,
+      "all24_rmse_wm2": 50.63,
+      "daylight_rmse_wm2": 68.89,
+      "all24_mae_wm2": 28.46,
+      "daylight_mae_wm2": 48.31,
+      "all24_hours": null,
+      "daylight_hours": null
+    }
+  ]
+}

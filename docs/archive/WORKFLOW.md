@@ -1,3 +1,7 @@
+> Historical document preserved from the previous layout. Some scripts and
+> results mentioned below are absent. Use [current run instructions](../../README.md)
+> and [dashboard scope](../DASHBOARD.md) for the reorganized project.
+
 # Day-Ahead GHI → PV Power Forecasting for Mumbai — Final Workflow
 
 **Version:** v4 (protocol + GBM measurements). **Written:** 1 Oct 2026.

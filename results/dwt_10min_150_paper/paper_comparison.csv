@@ -1,0 +1,6 @@
+method,site,source,n_test_days,all24_rmse_wm2,daylight_rmse_wm2,all24_mae_wm2,daylight_mae_wm2,all24_hours,daylight_hours
+Mumbai DWT-BiLSTM 10min→hourly,Mumbai,this project,365.0,76.24744106745487,108.1447876556873,33.383611894519824,66.92966213229965,8760.0,4354.0
+Mumbai corrected 10min→hourly,Mumbai,this project,365.0,74.47768376794016,105.63434833560106,32.585816538761364,65.3245433182335,8760.0,4354.0
+Mumbai prior-3-day baseline,Mumbai,this project,365.0,78.96023213901978,111.99132131702552,33.432221583755684,67.00716405961481,8760.0,4354.0
+"Bektaş & Altaş (2024), Model 1",Trabzon,https://link.springer.com/article/10.1007/s00521-024-09701-2,,53.2,72.83,27.67,53.2,,
+"Bektaş & Altaş (2024), Model 2",Trabzon,https://link.springer.com/article/10.1007/s00521-024-09701-2,,50.63,68.89,28.46,48.31,,
