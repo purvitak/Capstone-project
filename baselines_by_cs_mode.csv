@@ -1,0 +1,5 @@
+,prev_day_kt_all_rmse,prev_day_kt_monsoon_rmse,prev_day_kt_non_monsoon_rmse,mean3_kt_all_rmse,mean3_kt_monsoon_rmse,mean3_kt_non_monsoon_rmse
+lagged,123.9,173.6,85.2,121.5,173.9,79.1
+clim,123.7,171.5,86.9,121.4,171.2,82.1
+clim_ratio,123.1,173.2,83.8,120.9,173.7,78.0
+solcast_LEAKY,117.7,171.8,72.6,114.3,170.6,65.6

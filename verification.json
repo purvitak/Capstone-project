@@ -1,0 +1,210 @@
+{
+  "csv": "/Users/purvitak/Desktop/capstone/solcast_mumbai_merged_2020_2026.csv",
+  "generated": "2026-10-01 13:29:40.397457+05:30",
+  "tally": {
+    "VERIFIED": 13,
+    "CHANGED": 3
+  },
+  "checks": [
+    {
+      "check": "grid_complete",
+      "status": "VERIFIED",
+      "detail": "345,168 rows, 0 missing, 0 duplicate, 0 off-grid deltas",
+      "rows": 345168,
+      "start": "2020-01-01 05:30:00+05:30",
+      "end": "2026-07-25 05:20:00+05:30",
+      "expected_grid_rows": 345168,
+      "duplicate_timestamps": 0,
+      "off_grid_deltas": 0,
+      "missing_timestamps": 0
+    },
+    {
+      "check": "complete_ist_days",
+      "status": "VERIFIED",
+      "detail": "2396 complete days 2020-01-02 -> 2026-07-24; dropped 2 partial (['2020-01-01', '2026-07-25'])",
+      "n_days": 2396,
+      "dropped": [
+        "2020-01-01",
+        "2026-07-25"
+      ]
+    },
+    {
+      "check": "no_merge_artifacts",
+      "status": "VERIFIED",
+      "detail": "no column is empty or constant in only one era",
+      "suspicious": []
+    },
+    {
+      "check": "dtypes_after_merge",
+      "status": "CHANGED",
+      "detail": "dtypes={'ghi': 'int64', 'clearsky_ghi': 'int64', 'air_temp': 'float64', 'zenith': 'int64', 'azimuth': 'int64'}; integer-valued={'ghi': True, 'clearsky_ghi': True, 'air_temp': False, 'zenith': True, 'azimuth': True} (v3 Bucket 1 claimed int64 for all five on the 2023-2026 file alone)",
+      "dtypes": {
+        "ghi": "int64",
+        "clearsky_ghi": "int64",
+        "air_temp": "float64",
+        "zenith": "int64",
+        "azimuth": "int64"
+      },
+      "integer_valued": {
+        "ghi": true,
+        "clearsky_ghi": true,
+        "air_temp": false,
+        "zenith": true,
+        "azimuth": true
+      }
+    },
+    {
+      "check": "merge_seam_continuous",
+      "status": "VERIFIED",
+      "detail": "288 rows across the 2023-12-01/02 seam (expected 288)"
+    },
+    {
+      "check": "solar_position_and_site",
+      "status": "VERIFIED",
+      "detail": "least-squares fit lands 1.4 km from nominal Mumbai with 0.388 deg zenith RMSE at period mid-points",
+      "lat": 19.088328779193503,
+      "lon": 72.87979934864038,
+      "zenith_rmse_deg": 0.38788310923242664,
+      "converged": true,
+      "km_from_mumbai": 1.4
+    },
+    {
+      "check": "azimuth_convention",
+      "status": "VERIFIED",
+      "detail": "(-az) %% 360 reproduces Solcast azimuth to 2.20 deg RMSE on daylight steps",
+      "azimuth_rmse_deg": 2.196
+    },
+    {
+      "check": "timestamp_convention",
+      "status": "VERIFIED",
+      "detail": "best fit is period_mid (used) (0.388 deg); v3 assumed mid-point",
+      "rmse_by_convention": {
+        "period_start": 1.083,
+        "period_mid (used)": 0.388,
+        "period_end": 1.083
+      }
+    },
+    {
+      "check": "kt_pileup_at_1",
+      "status": "VERIFIED",
+      "detail": "51.8% of daytime rows are exactly 1.000, 0.00% exceed it (v3 measured 53.8% / 0.00% on 2023-2026 only)",
+      "pct_exactly_1": 51.8,
+      "pct_above_1": 0.0
+    },
+    {
+      "check": "annual_kt_homogeneity",
+      "status": "VERIFIED",
+      "detail": "all-day kt spread 0.0845 across years, but clear-sky-day kt spread 0.0157 - v3 warned the 0.03 all-day threshold confuses monsoon variability with bias",
+      "annual_mean_kt": {
+        "2020": 0.7894,
+        "2021": 0.7844,
+        "2022": 0.7971,
+        "2023": 0.8408,
+        "2024": 0.8314,
+        "2025": 0.7971,
+        "2026": 0.8689
+      },
+      "clear_day_mean_kt": {
+        "2020": 0.9756,
+        "2021": 0.9732,
+        "2022": 0.9813,
+        "2023": 0.9881,
+        "2024": 0.9889,
+        "2025": 0.9888,
+        "2026": 0.986
+      },
+      "n_clear_days": 1118
+    },
+    {
+      "check": "cloud_opacity_not_independent",
+      "status": "VERIFIED",
+      "detail": "corr(cloud_opacity, kt) = -1.000",
+      "corr_cloud_kt": -1.0
+    },
+    {
+      "check": "ghi_reconstructible_from_dni_dhi",
+      "status": "VERIFIED",
+      "detail": "|DNI*cos(z)+DHI-GHI| median 0.45 W/m2, p95 3.06 - dni/dhi/cloud_opacity stay out of the inputs",
+      "median_abs_resid": 0.449
+    },
+    {
+      "check": "climatology_support",
+      "status": "CHANGED",
+      "detail": "median 6 other years per day vs ~1 on the 2023-2026 file; v3 \u00a73 said mode B was handicapped and should improve",
+      "median_other_years": 6
+    },
+    {
+      "check": "validation_monsoon_coverage",
+      "status": "CHANGED",
+      "detail": "last 25% of development days = 506 days with 175 monsoon days (v3 \u00a712 risk: on the single file the monsoon delta_max fell back to pooled)",
+      "validation_days": 506,
+      "validation_monsoon_days": 175
+    },
+    {
+      "check": "solcast_cs_is_leaky_advantage",
+      "status": "VERIFIED",
+      "detail": "using Solcast same-day clear-sky lowers 3-day-baseline RMSE by 7.2 W/m2 - it must never be an input",
+      "rmse_advantage_wm2": 7.2
+    },
+    {
+      "check": "cs_mode_choice",
+      "status": "VERIFIED",
+      "detail": "best non-leaky proxy on this comparison is 'clim_ratio' (select it on development data in 00_prepare.py, never on the test year)",
+      "ranking": {
+        "lagged": 121.5,
+        "clim": 121.4,
+        "clim_ratio": 120.9
+      }
+    }
+  ],
+  "split": {
+    "usable_days": 2389,
+    "dev_days": 2023,
+    "dev_start": "2020-01-09",
+    "dev_end": "2025-07-23",
+    "purge_days": 1,
+    "test_days": 365,
+    "test_start": "2025-07-25",
+    "test_end": "2026-07-24"
+  },
+  "baselines_by_cs_mode": {
+    "lagged": {
+      "prev_day_kt_all_rmse": 123.9,
+      "prev_day_kt_monsoon_rmse": 173.6,
+      "prev_day_kt_non_monsoon_rmse": 85.2,
+      "mean3_kt_all_rmse": 121.5,
+      "mean3_kt_monsoon_rmse": 173.9,
+      "mean3_kt_non_monsoon_rmse": 79.1
+    },
+    "clim": {
+      "prev_day_kt_all_rmse": 123.7,
+      "prev_day_kt_monsoon_rmse": 171.5,
+      "prev_day_kt_non_monsoon_rmse": 86.9,
+      "mean3_kt_all_rmse": 121.4,
+      "mean3_kt_monsoon_rmse": 171.2,
+      "mean3_kt_non_monsoon_rmse": 82.1
+    },
+    "clim_ratio": {
+      "prev_day_kt_all_rmse": 123.1,
+      "prev_day_kt_monsoon_rmse": 173.2,
+      "prev_day_kt_non_monsoon_rmse": 83.8,
+      "mean3_kt_all_rmse": 120.9,
+      "mean3_kt_monsoon_rmse": 173.7,
+      "mean3_kt_non_monsoon_rmse": 78.0
+    },
+    "solcast_LEAKY": {
+      "prev_day_kt_all_rmse": 117.7,
+      "prev_day_kt_monsoon_rmse": 171.8,
+      "prev_day_kt_non_monsoon_rmse": 72.6,
+      "mean3_kt_all_rmse": 114.3,
+      "mean3_kt_monsoon_rmse": 170.6,
+      "mean3_kt_non_monsoon_rmse": 65.6
+    }
+  },
+  "recovered_site": {
+    "lat": 19.088328779193503,
+    "lon": 72.87979934864038,
+    "zenith_rmse_deg": 0.38788310923242664,
+    "converged": true
+  }
+}

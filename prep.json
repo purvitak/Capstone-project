@@ -1,0 +1,278 @@
+{
+  "cs_mode": "clim",
+  "grid_audit": {
+    "rows": 345168,
+    "start": "2020-01-01 05:30:00+05:30",
+    "end": "2026-07-25 05:20:00+05:30",
+    "expected_grid_rows": 345168,
+    "duplicate_timestamps": 0,
+    "off_grid_deltas": 0,
+    "missing_timestamps": 0,
+    "missing_examples": []
+  },
+  "completeness": {
+    "n_days": 2398,
+    "n_days_with_144_steps": 2396,
+    "n_days_short": 2,
+    "max_repair_gap_steps": 6,
+    "short_days": [
+      {
+        "date": "2020-01-01",
+        "n_steps": 111,
+        "n_missing": 33,
+        "missing_steps": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "gap_runs": [
+          {
+            "start_step": 0,
+            "length": 33
+          }
+        ],
+        "longest_gap_steps": 33
+      },
+      {
+        "date": "2026-07-25",
+        "n_steps": 33,
+        "n_missing": 111,
+        "missing_steps": [
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          "..."
+        ],
+        "gap_runs": [
+          {
+            "start_step": 33,
+            "length": 111
+          }
+        ],
+        "longest_gap_steps": 111
+      }
+    ],
+    "policy": {
+      "max_repair_gap_steps": 6,
+      "smooth_fields_interpolated": [
+        "air_temp",
+        "relative_humidity",
+        "surface_pressure",
+        "wind_speed_10m"
+      ],
+      "ghi_repair": "linear interpolation of kt, rescaled by the clear-sky profile",
+      "never_across_day_boundary": true,
+      "target_day_rule": "a day with incomplete actuals is still forecast; it is scored only on steps that exist",
+      "predecessor_rule": "a day is unusable if any of its 7 predecessors is unrepairable or has an undefined clear-sky proxy"
+    },
+    "n_repaired": 0,
+    "n_unrepairable": 2,
+    "n_complete": 2396,
+    "repair_log": [
+      {
+        "day_index": 0,
+        "action": "disqualified",
+        "longest_gap_steps": 33,
+        "n_missing": 33,
+        "date": "2020-01-01"
+      },
+      {
+        "day_index": 2397,
+        "action": "disqualified",
+        "longest_gap_steps": 111,
+        "n_missing": 111,
+        "date": "2026-07-25"
+      }
+    ],
+    "selftest": {
+      "short_gap_repaired": true,
+      "long_gap_disqualified": true,
+      "repaired_ghi_within_1pct_of_peak": true,
+      "successors_of_bad_day_blocked": true,
+      "day_after_window_eligible_again": true,
+      "partial_target_scored_on_present_steps_only": true,
+      "no_interpolation_across_day_boundary": true,
+      "all_passed": true,
+      "repaired_ghi_max_err_wm2": 4.108,
+      "repaired_ghi_max_err_pct_of_peak": 0.571
+    }
+  },
+  "n_days": 2398,
+  "n_usable_days": 2389,
+  "dev": {
+    "n": 2023,
+    "start": "2020-01-09",
+    "end": "2025-07-23"
+  },
+  "test": {
+    "n": 365,
+    "start": "2025-07-25",
+    "end": "2026-07-24"
+  },
+  "validation": {
+    "n": 506,
+    "n_monsoon": 175,
+    "start": "2024-03-05"
+  },
+  "purge_day": "2025-07-24",
+  "clim_support_median_other_years": 5,
+  "cs_mode_baselines_rmse_wm2": {
+    "lagged": {
+      "n_dev_days": 2016,
+      "n_test_days": 365,
+      "dev": {
+        "prev_day": 135.64251293039155,
+        "mean3": 133.55782418614254
+      },
+      "test": {
+        "prev_day": 124.34182784379074,
+        "mean3": 123.46755994640151
+      }
+    },
+    "clim": {
+      "n_dev_days": 2023,
+      "n_test_days": 365,
+      "dev": {
+        "prev_day": 134.34819938840707,
+        "mean3": 131.5560548869818
+      },
+      "test": {
+        "prev_day": 123.01660975022598,
+        "mean3": 121.121709669051
+      }
+    },
+    "clim_ratio": {
+      "n_dev_days": 2017,
+      "n_test_days": 365,
+      "dev": {
+        "prev_day": 135.0058942266556,
+        "mean3": 132.6479219050221
+      },
+      "test": {
+        "prev_day": 124.01005770891611,
+        "mean3": 122.8156939037549
+      }
+    },
+    "solcast": {
+      "n_dev_days": 2023,
+      "n_test_days": 365,
+      "dev": {
+        "prev_day": 130.35137095894726,
+        "mean3": 125.11310275001583
+      },
+      "test": {
+        "prev_day": 117.65943894312412,
+        "mean3": 114.35547783188767
+      }
+    }
+  },
+  "leak_tests": {
+    "day_tested": "2026-01-23",
+    "test1_blank_future_max_feature_delta": 0.0,
+    "test2_clim_cutoff_max_delta_wm2": 0.0,
+    "test3_perturb_day_max_feature_delta": 0.0,
+    "all_passed": true
+  },
+  "feature_names": [
+    "kt_d1",
+    "kt_d2",
+    "kt_d3",
+    "kt_d1_smooth",
+    "ktmean_d1",
+    "ktmean_d2",
+    "ktmean_d3",
+    "ktmean_d4",
+    "ktmean_d5",
+    "ktmean_d6",
+    "ktmean_d7",
+    "cs_ratio_d1",
+    "cs_proxy_k",
+    "temp_d1",
+    "rh_d1",
+    "pres_d1",
+    "wind_d1",
+    "temp_med3",
+    "wind_med3",
+    "zenith",
+    "doy_sin",
+    "doy_cos",
+    "step"
+  ]
+}
