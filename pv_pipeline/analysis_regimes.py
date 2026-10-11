@@ -54,14 +54,15 @@ def _rmse(ghi, hat, mask, days):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--prep", default="results/prep.npz")
-    ap.add_argument("--base", default="results/dwt_base_pred.npz")
+    ap.add_argument("--prep", default=str(C.PREP_PATH))
+    ap.add_argument("--base", default=str(C.RESULTS_DIR / "dwt_base_pred.npz"))
     ap.add_argument("--stage2", default="")
-    ap.add_argument("--gbm", default="results/base_pred.npz")
-    ap.add_argument("--out", default="results")
+    ap.add_argument("--gbm", default=str(C.RESULTS_DIR / "base_pred.npz"))
+    ap.add_argument("--out", default=str(C.RESULTS_DIR))
     ap.add_argument("--clusters", type=int, default=3)
     args = ap.parse_args()
     out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
 
     d = np.load(args.prep, allow_pickle=True)
     kt, mask, ghi, cs = d["kt"], d["mask"], d["ghi"], d["cs_proxy"]
@@ -86,7 +87,7 @@ def main() -> None:
     stem = Path(args.base).name
     if stem.endswith("_base_pred.npz"):
         candidates.append(str(Path(args.base).with_name(stem.replace("_base_pred.npz", "_stage2.npz"))))
-    candidates.append("results/dwt_stage2.npz")
+    candidates.append(str(C.RESULTS_DIR / "dwt_stage2.npz"))
     for p in candidates:
         if p and Path(p).is_file():
             z = np.load(p, allow_pickle=True)

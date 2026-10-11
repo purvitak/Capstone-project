@@ -17,8 +17,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from pv_pipeline import common as K  # noqa: E402
+import common as K
 
 RESULTS: list[dict] = []
 
@@ -31,7 +30,7 @@ def check(name: str, status: str, detail: str, **extra) -> None:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True, help="merged Solcast CSV (glob allowed)")
-    ap.add_argument("--out", default="pv_pipeline/results")
+    ap.add_argument("--out", default=str(K.RESULTS_DIR / "verification"))
     args = ap.parse_args()
 
     out = Path(args.out)

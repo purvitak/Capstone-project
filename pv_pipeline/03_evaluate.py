@@ -64,16 +64,17 @@ def hourly_rmse(y, yhat, mask):
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--prep", default="results/prep.npz")
-    ap.add_argument("--out", default="results")
-    ap.add_argument("--base", default="results/base_pred.npz")
-    ap.add_argument("--stage2", default="results/stage2.npz")
-    ap.add_argument("--prefix", default="",
+    ap.add_argument("--prep", default=str(C.PREP_PATH))
+    ap.add_argument("--out", default=str(C.RESULTS_DIR))
+    ap.add_argument("--base", default=str(C.RESULTS_DIR / "dwt_base_pred.npz"))
+    ap.add_argument("--stage2", default=str(C.RESULTS_DIR / "dwt_stage2.npz"))
+    ap.add_argument("--prefix", default="dwt_",
                     help="Prefix for output csv/json/png (use dwt_ for the DWT-BiLSTM path)")
     ap.add_argument("--stage1-name", default="dwt_bilstm")
     ap.add_argument("--stage2-name", default="stage2_corrected")
     args = ap.parse_args()
     out = Path(args.out)
+    out.mkdir(parents=True, exist_ok=True)
     prefix = args.prefix
 
     d = np.load(args.prep, allow_pickle=True)

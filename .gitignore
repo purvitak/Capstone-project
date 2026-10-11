@@ -1,0 +1,7 @@
+.venv/
+**/__pycache__/
+*.py[cod]
+.DS_Store
+.ipynb_checkpoints/
+capstone/
+data/raw/*.csv

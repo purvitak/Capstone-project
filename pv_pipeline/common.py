@@ -15,9 +15,14 @@ from __future__ import annotations
 
 import glob as _glob
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PREP_PATH = PROJECT_ROOT / "data" / "prepared" / "prep.npz"
+RESULTS_DIR = PROJECT_ROOT / "results"
 
 STEP_MINUTES = 10
 STEPS_PER_HOUR = 6
@@ -322,8 +327,10 @@ def baseline_mean3_kt(kt: np.ndarray, n: int = 3) -> np.ndarray:
     """Mean kt profile of the previous `n` days. The single reference definition,
     shared by Stage 0's comparison table, Stage 1's acceptance check and Stage 3."""
     ktf = np.nan_to_num(kt, nan=0.0)
-    with np.errstate(invalid="ignore"):
-        return np.nanmean(np.stack([shift_days(ktf, k) for k in range(1, n + 1)]), axis=0)
+    lags = np.stack([shift_days(ktf, k) for k in range(1, n + 1)])
+    count = np.isfinite(lags).sum(axis=0)
+    return np.divide(np.nansum(lags, axis=0), count,
+                     out=np.full_like(ktf, np.nan, dtype=float), where=count > 0)
 
 
 def kt_from(ghi: np.ndarray, cs: np.ndarray, clip: tuple = KT_CLIP) -> np.ndarray:
