@@ -1,0 +1,17 @@
+flowchart TD
+    A["Solcast Mumbai historical data"] --> B["IST alignment and quality checks<br/>Daily 144-slot profiles; clear-sky climatology"]
+    B --> C["Day D−1 GHI and historical sky type"]
+    C --> D["Six-level Haar DWT<br/>Seven resampled bands + sky-type channels"]
+    D --> E["Training-only scaling → BiLSTM<br/>64 hidden units per direction"]
+    E --> F["144 predicted day-D clear-sky-index values"]
+    F --> G["Stage 1: index × clear-sky proxy<br/>RMSE 116.72802 W/m²"]
+    E -. "Development forecasts" .-> H["Expanding-window OOF forecasts<br/>1,293 days; historical residual targets"]
+    H -. "Fit and validate" .-> I["Trained HGB residual corrector"]
+    F --> I
+    B --> J["Issue-time context<br/>Known solar/calendar values; D−1 errors"]
+    J --> I
+    I --> K["Bounded index correction + residual-quantile intervals<br/>Monsoon bound 0.10; other months 0.05"]
+    K --> L["Stage 2: corrected index × clear-sky proxy<br/>RMSE 114.06405 W/m²"]
+    G --> M["Archived forecast dashboard"]
+    L --> M
+    M --> N["Illustrative temperature-adjusted PV power and energy"]
