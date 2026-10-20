@@ -1,5 +1,8 @@
 # Implementation results and base-paper comparison
 
+Historical result snapshot. For the later hybrid, see the
+[latest experiment report](../../results/ghi_search/REPORT.md).
+
 Verified on 12 October 2026 by recomputing native metrics from saved prediction arrays and rerunning `pv_pipeline/compare_paper.py` into a temporary directory. Both matched the saved reports. This is a report of the completed run, not a new training experiment.
 
 ## Completed experiment
@@ -77,6 +80,6 @@ flowchart TD
 
 Dashed arrows describe corrector training; solid arrows describe data and forecast flow. The clear-sky proxy is also used for interval conversion. The selected run allows up to 150 neural epochs with chronological validation and early stopping. The dashboard replays saved forecasts and does not provide live future-day inference.
 
-Exportable diagram: [pipeline.svg](figures/pipeline.svg).
+Exportable diagram: [pipeline.svg](../figures/pipeline.svg).
 
 Source artifacts: `results/dwt_10min_150_paper/dwt_eval_summary.json`, `dwt_metrics.csv`, `dwt_stage2.json`, `paper_comparison.json`, `dwt_base_pred.npz`, and `dwt_stage2.npz`. Machine precision values remain in the JSON reports; displayed tables are rounded to five decimal places.

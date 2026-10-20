@@ -3,5 +3,6 @@
 *.py[cod]
 .DS_Store
 .ipynb_checkpoints/
-capstone/
+results/smoke*/
 data/raw/*.csv
+!data/raw/solcast_mumbai_merged_2020_2026.csv

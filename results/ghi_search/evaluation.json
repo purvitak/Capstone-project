@@ -1,0 +1,274 @@
+{
+  "frozen_selection_sha256": "1eef490fcfa44e716be09ff93df31fbed486afd65297ba0c5a46f10f47e9125d",
+  "test_days": 365,
+  "test_period": [
+    "2025-07-25",
+    "2026-07-24"
+  ],
+  "selection": {
+    "method": "squared_error_leaves15_min100_w0.25",
+    "season": "all",
+    "n_days": 1293,
+    "rmse": 108.43731610253617,
+    "mae": 69.31396433238719,
+    "mbe": -2.021076194742331,
+    "nrmse": 24.86119264388941,
+    "n": 85642,
+    "candidate": "squared_error_leaves15_min100",
+    "bilstm_weight": 0.25
+  },
+  "correction_retained": true,
+  "final_training": {
+    "selected_iterations": 88,
+    "iterations_checked": 200,
+    "inner_validation_rmse_wm2": 114.22708085809994,
+    "inner_validation_mae_wm2": 73.76923001884433,
+    "inner_train_days": 1617,
+    "inner_purge_days": 1,
+    "inner_validation_days": 405,
+    "refit_days": 2023,
+    "training_daylight_rows": 133814,
+    "early_stopping": false
+  },
+  "metrics": [
+    {
+      "method": "mean3",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 121.121709669051,
+      "mae": 74.10970131502475,
+      "mbe": 0.49667694363349174,
+      "nrmse": 28.249309018647732,
+      "n": 24086
+    },
+    {
+      "method": "mean3",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 175.15587802471555,
+      "mae": 122.4083976836372,
+      "mbe": 5.736791759194021,
+      "nrmse": 56.17636149869374,
+      "n": 8522
+    },
+    {
+      "method": "mean3",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 76.84236364908685,
+      "mae": 47.663961758785014,
+      "mbe": -2.3725249619310693,
+      "nrmse": 15.592925092058726,
+      "n": 15564
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 116.72802267863982,
+      "mae": 74.05423862499781,
+      "mbe": 1.4090994136500372,
+      "nrmse": 27.22456604018025,
+      "n": 24086
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 164.18050808705465,
+      "mae": 120.17873006726255,
+      "mbe": 24.51124737437329,
+      "nrmse": 52.65631777448064,
+      "n": 8522
+    },
+    {
+      "method": "dwt_bilstm",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 79.54089100234272,
+      "mae": 48.79897544901603,
+      "mbe": -11.240380470780929,
+      "nrmse": 16.14051281424731,
+      "n": 15564
+    },
+    {
+      "method": "original_corrected",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 114.06404890970941,
+      "mae": 72.34607410036988,
+      "mbe": 2.3891407520599506,
+      "nrmse": 26.603245399795362,
+      "n": 24086
+    },
+    {
+      "method": "original_corrected",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 161.25754389551872,
+      "mae": 119.6870640701168,
+      "mbe": 20.52546040566536,
+      "nrmse": 51.7188585528821,
+      "n": 8522
+    },
+    {
+      "method": "original_corrected",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 76.78629093374698,
+      "mae": 46.42472248624861,
+      "mbe": -7.541321602606286,
+      "nrmse": 15.58154676364088,
+      "n": 15564
+    },
+    {
+      "method": "reference_hybrid",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 109.31586457041048,
+      "mae": 69.17466533054953,
+      "mbe": 3.8320541979911944,
+      "nrmse": 25.495822733414087,
+      "n": 24086
+    },
+    {
+      "method": "reference_hybrid",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 155.82697927749058,
+      "mae": 114.41222147688876,
+      "mbe": 25.221301642142627,
+      "nrmse": 49.97715644979129,
+      "n": 8522
+    },
+    {
+      "method": "reference_hybrid",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 72.09422189231658,
+      "mae": 44.405039689383834,
+      "mbe": -7.879534514361576,
+      "nrmse": 14.629427677040379,
+      "n": 15564
+    },
+    {
+      "method": "selected_uncorrected",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 106.99613261386307,
+      "mae": 69.47969324287813,
+      "mbe": 4.131139815637555,
+      "nrmse": 24.954789874317278,
+      "n": 24086
+    },
+    {
+      "method": "selected_uncorrected",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 152.27835618509386,
+      "mae": 113.39004070575184,
+      "mbe": 25.607618439827345,
+      "nrmse": 48.83903458994162,
+      "n": 8522
+    },
+    {
+      "method": "selected_uncorrected",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 70.84983539080456,
+      "mae": 45.43677490063901,
+      "mbe": -7.628211947106304,
+      "nrmse": 14.376915591490075,
+      "n": 15564
+    },
+    {
+      "method": "selected_final",
+      "season": "all",
+      "n_days": 365,
+      "rmse": 107.41955214759084,
+      "mae": 68.9459427982327,
+      "mbe": 5.6744047235134865,
+      "nrmse": 25.05354433613498,
+      "n": 24086
+    },
+    {
+      "method": "selected_final",
+      "season": "monsoon",
+      "n_days": 122,
+      "rmse": 152.80356206165322,
+      "mae": 113.9081299477788,
+      "mbe": 24.49459694704562,
+      "nrmse": 49.00747972301717,
+      "n": 8522
+    },
+    {
+      "method": "selected_final",
+      "season": "non_monsoon",
+      "n_days": 243,
+      "rmse": 71.22123095687522,
+      "mae": 44.32709424461977,
+      "mbe": -4.630509060150148,
+      "nrmse": 14.452279530940308,
+      "n": 15564
+    }
+  ],
+  "paired_seven_day_block_bootstrap": {
+    "original_corrected": {
+      "rmse": {
+        "difference": -6.644496762118578,
+        "ci95_lo": -9.169546469229974,
+        "ci95_hi": -3.8280165578009715
+      },
+      "mae": {
+        "difference": -3.4001313021371686,
+        "ci95_lo": -5.233955215854299,
+        "ci95_hi": -1.5993785168017278
+      }
+    },
+    "reference_hybrid": {
+      "rmse": {
+        "difference": -1.8963124228196477,
+        "ci95_lo": -3.932232833414806,
+        "ci95_hi": 0.27896715185060567
+      },
+      "mae": {
+        "difference": -0.22872253231682294,
+        "ci95_lo": -1.4794037875408237,
+        "ci95_hi": 1.0992014885650019
+      }
+    },
+    "mean3": {
+      "rmse": {
+        "difference": -13.702157521460165,
+        "ci95_lo": -21.485321141152724,
+        "ci95_hi": -5.697052573210499
+      },
+      "mae": {
+        "difference": -5.163758516792058,
+        "ci95_lo": -10.34885246259907,
+        "ci95_hi": -0.07533298385735705
+      }
+    },
+    "selected_uncorrected": {
+      "rmse": {
+        "difference": 0.42341953372778107,
+        "ci95_lo": -0.9013193306623897,
+        "ci95_hi": 1.9610533402480865
+      },
+      "mae": {
+        "difference": -0.5337504446454204,
+        "ci95_lo": -1.527128210979344,
+        "ci95_hi": 0.5718791344742117
+      }
+    }
+  },
+  "bootstrap_repeats": 2000,
+  "bootstrap_seed": 42,
+  "interval_nominal_pct": 80,
+  "interval_coverage_pct": 78.09931080295608,
+  "limitations": [
+    "Development-derived climatology is shared across OOF folds.",
+    "Development model and correction selection reuse validation dates.",
+    "The existing test year has been inspected in earlier project iterations."
+  ]
+}

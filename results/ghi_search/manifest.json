@@ -1,0 +1,100 @@
+{
+  "experiment_version": 1,
+  "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+  "sources": {
+    "dwt": {
+      "path": "/Users/purvitak/Documents/GitHub/Capstone-project/results/scaled_100epochs/dwt_base_pred.npz",
+      "sha256": "fa4c62e06744a4a98b4dab950d3d6de4a2563d1efc92c16d293256a2230f6462"
+    },
+    "context": {
+      "path": "/Users/purvitak/Documents/GitHub/Capstone-project/results/context_hgb/dwt_base_pred.npz",
+      "sha256": "be86730a839f0f054760886399b82dc978b271f10199b47d4de57ee4eedd62b1"
+    },
+    "reference": {
+      "path": "/Users/purvitak/Documents/GitHub/Capstone-project/results/hybrid/hybrid_base_pred.npz",
+      "sha256": "c753e2b09767a24d99975881069fc35397441daaf1d46331164b26faf11d21d8"
+    },
+    "test_dwt": {
+      "path": "/Users/purvitak/Documents/GitHub/Capstone-project/results/dwt_10min_150_paper/dwt_base_pred.npz",
+      "sha256": "409cb683039b2c0bbf452e4480cc446196225bacea1cb221448918821fc5cf11"
+    },
+    "original_corrected": {
+      "path": "/Users/purvitak/Documents/GitHub/Capstone-project/results/dwt_10min_150_paper/dwt_stage2.npz",
+      "sha256": "c6cb91542aa83a00ba1ade4cc3a6791bfd1f64483e3a162cf6cf7eca7488591e"
+    }
+  },
+  "candidates": {
+    "squared_error_leaves15_min40": {
+      "loss": "squared_error",
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "squared_error_leaves15_min100": {
+      "loss": "squared_error",
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "squared_error_leaves31_min40": {
+      "loss": "squared_error",
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "squared_error_leaves31_min100": {
+      "loss": "squared_error",
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 100,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "absolute_error_leaves15_min40": {
+      "loss": "absolute_error",
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "absolute_error_leaves15_min100": {
+      "loss": "absolute_error",
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "absolute_error_leaves31_min40": {
+      "loss": "absolute_error",
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 40,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "absolute_error_leaves31_min100": {
+      "loss": "absolute_error",
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 100,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    }
+  },
+  "bilstm_weights": [
+    0,
+    0.25,
+    0.5,
+    0.75
+  ],
+  "selection": "strictly_lower_RMSE_and_MAE_than_reference",
+  "threads": 2
+}

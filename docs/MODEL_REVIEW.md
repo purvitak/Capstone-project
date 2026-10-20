@@ -1,5 +1,8 @@
 # Model review after the original 15-epoch run
 
+Historical development record. The later selected hybrid and its test evaluation
+are documented in the [latest experiment report](../results/ghi_search/REPORT.md).
+
 Original unchanged outputs: `results/15epochs/`.
 
 - Test native daylight RMSE: 124.21 W/m², vs 3-day mean 121.12 W/m².
@@ -61,8 +64,8 @@ pre-monsoon. On these same 270 days:
 | Fixed 50/50 original BiLSTM + context HGB | 121.51 |
 
 The two neural variants did not improve aggregate screening error and were not
-selected. Their partial artifacts remain in `results/context_residual_dev/` and
-`results/context_ghi_dev/`; do not compare those partial scores with full OOF.
+selected. Their partial artifacts remain in `results/archive/context_residual_dev/` and
+`results/archive/context_ghi_dev/`; do not compare those partial scores with full OOF.
 
 The context HGB then ran all 15 folds, using the same chronological training days
 and one-day purge as the existing BiLSTM. It adds the prepared historical

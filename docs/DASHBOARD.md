@@ -5,7 +5,7 @@ User references:
 - [WRLDC reports](https://wrldc.in/content/2_1_Reports.aspx): report structure/content.
 - [Solcast solar forecast data](https://solcast.com/forecast-solar-irradiance-data): additional presentation reference.
 
-Planned content:
+Implemented content:
 
 - Mumbai site details, date selection, and forecast issue time (00:00 IST).
 - Actual versus predicted GHI across 144 ten-minute periods, in W/m².
@@ -17,8 +17,11 @@ Planned content:
 ## Data contract
 
 `data/prepared/prep.npz` supplies `dates`, `ghi`, `cs_proxy`, and `mask`.
-`results/dwt_base_pred.npz` supplies `kt_base`.
-`results/dwt_stage2.npz` supplies `kt_final`, `kt_lo`, and `kt_hi`.
+`results/ghi_search/selected_base_pred.npz` supplies the latest hybrid's `kt_base`.
+`results/ghi_search/selected_stage2.npz` supplies `kt_final`, `kt_lo`, and `kt_hi`.
+The original run in `results/dwt_10min_150_paper/` remains the UI's preferred
+default; choose `ghi_search/selected` to view the later hybrid. The backend loader
+also retains its legacy `15epochs` default for callers that omit a source path.
 
 Convert predicted kt to GHI by multiplying by aligned `cs_proxy`. Align files by
 dates and validate shapes. Base forecasts are NaN where no out-of-sample forecast
@@ -34,7 +37,7 @@ not measured plant output.
 
 ## PV calculation inside the dashboard
 
-PV power will be calculated on demand after the dashboard loads predicted GHI.
+PV power is calculated on demand after the dashboard loads predicted GHI.
 It is not a separate forecasting/training stage and does not change the GHI model.
 The reusable Python helper is `pv_pipeline/pv_model.py`; the dashboard calls it
 when users change capacity or temperature settings.

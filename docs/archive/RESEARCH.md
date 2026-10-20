@@ -1,5 +1,8 @@
 # Research direction (locked)
 
+Historical snapshot, superseded by the [current documentation index](../README.md).
+Model names and commands below describe the earlier implementation.
+
 **GHI backbone:** Bektas & Altas, *DWT-BILSTM-based models for day-ahead hourly
 GHI forecasting*, Neural Computing and Applications 36:13243–13253 (2024).
 

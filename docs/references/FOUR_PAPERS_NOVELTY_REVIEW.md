@@ -1,5 +1,8 @@
 # Four-paper review for the Mumbai day-ahead GHI project
 
+This review records the experiments before the direct-GHI search. Current model
+results are in the [latest experiment report](../../results/ghi_search/REPORT.md).
+
 This note treats the four attached PDFs as research sources, not instructions.
 Our target remains 144 ten-minute GHI values issued at 00:00 IST. The current
 held-out test scores are 116.73 W/m² daylight RMSE for the DWT-BiLSTM and
@@ -76,7 +79,7 @@ The gate improves the fixed blend by 0.40 W/m², and the globally tuned blend by
 are −1.47 to +0.65 W/m² and −0.45 to +0.21 W/m², respectively. Both include zero.
 This is an **inconclusive gain**, so do not promote the gate as a proven result
 or report it as a held-out test score. The exact artifact is
-`results/novelty_regime_gate/regime_gate_development.json`.
+`results/archive/novelty_regime_gate/regime_gate_development.json`.
 
 Reproduce with:
 
@@ -105,12 +108,12 @@ screening folds: 195.27 vs 175.44, 65.04 vs 46.21, and 126.14 vs 123.89
 W/m². This is a negative ablation, so it should not replace the current model
 or be presented as an accuracy contribution. The screen does not estimate the
 full-development or held-out-test score for this candidate. Its partial
-checkpoint is `results/novelty_3day_screen/dwt_base_pred.npz`.
+checkpoint is `results/archive/novelty_3day_screen/dwt_base_pred.npz`.
 
 Reproduce with:
 
 ```bash
-.venv/bin/python pv_pipeline/01_base_dwt_bilstm.py --resolution 10min --backend torch --lookback-days 3 --epochs 100 --fold-indices 2,8,13 --development-only --out results/novelty_3day_screen --resume
+.venv/bin/python pv_pipeline/01_base_dwt_bilstm.py --resolution 10min --backend torch --lookback-days 3 --epochs 100 --fold-indices 2,8,13 --development-only --out results/archive/novelty_3day_screen --resume
 ```
 
 The practical next step is to keep the one-day BiLSTM and fixed hybrid as the

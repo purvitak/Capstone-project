@@ -1,5 +1,8 @@
 # Raw inputs
 
-Place `solcast_mumbai_merged_2020_2026.csv` here to rerun verification and preparation.
-The original dataset is not included. CSVs here are ignored by Git. Training can
-use the existing `../prepared/prep.npz`.
+`solcast_mumbai_merged_2020_2026.csv` is the original merged dataset, moved here
+from the project root. Its contents are unchanged. This specific CSV remains
+versioned; other raw CSV exports are ignored by Git.
+
+Preparation and dataset verification take its path with `--csv`. Training and
+the dashboard use the existing `../prepared/prep.npz`.

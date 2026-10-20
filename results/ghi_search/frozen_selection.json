@@ -1,0 +1,226 @@
+{
+  "selection": {
+    "method": "squared_error_leaves15_min100_w0.25",
+    "season": "all",
+    "n_days": 1293,
+    "rmse": 108.43731610253617,
+    "mae": 69.31396433238719,
+    "mbe": -2.021076194742331,
+    "nrmse": 24.86119264388941,
+    "n": 85642,
+    "candidate": "squared_error_leaves15_min100",
+    "bilstm_weight": 0.25
+  },
+  "reference_development": {
+    "rmse": 109.11260573423584,
+    "mae": 69.40719016284311,
+    "mbe": -1.7390891151088042,
+    "nrmse": 25.01601486033224,
+    "n": 85642
+  },
+  "correction": {
+    "accepted": true,
+    "selected_iterations": 21,
+    "bounds": {
+      "monsoon": 0.1,
+      "non_monsoon": 0.5
+    },
+    "quantiles": [
+      -0.2347362204982378,
+      0.18880946312481098
+    ],
+    "train_days": 968,
+    "purge_days": 1,
+    "validation_days": 324,
+    "last_train_date": "2024-09-01",
+    "first_validation_date": "2024-09-03",
+    "base_validation": {
+      "rmse": 104.28840319188413,
+      "mae": 65.61505208686613,
+      "mbe": 0.3495723481966521,
+      "nrmse": 23.935024133104356,
+      "n": 21229
+    },
+    "candidate_validation": {
+      "rmse": 103.02453066603358,
+      "mae": 63.99506771351498,
+      "mbe": 0.8777604627755732,
+      "nrmse": 23.64495526176743,
+      "n": 21229
+    },
+    "delta_grid_metrics": [
+      {
+        "season": "monsoon",
+        "delta": 0.0,
+        "rmse": 152.76341764238404,
+        "mae": 112.90797113295473,
+        "mbe": 3.270208803682863,
+        "nrmse": 46.129481057451436,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.01,
+        "rmse": 152.4650985812984,
+        "mae": 112.75541364830462,
+        "mbe": 2.1402683482568055,
+        "nrmse": 46.0393986038784,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.02,
+        "rmse": 152.3894798340673,
+        "mae": 112.74784155122035,
+        "mbe": 1.3682151205604292,
+        "nrmse": 46.016564252422924,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.05,
+        "rmse": 152.24169591875904,
+        "mae": 112.68614090513077,
+        "mbe": 0.3915380099611256,
+        "nrmse": 45.971938415772904,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.1,
+        "rmse": 152.1732507760527,
+        "mae": 112.70110326527605,
+        "mbe": 0.2057914912242065,
+        "nrmse": 45.95127025475193,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.2,
+        "rmse": 152.39221081635165,
+        "mae": 112.93228783142621,
+        "mbe": 0.34668608687268904,
+        "nrmse": 46.01738891841626,
+        "n": 5671
+      },
+      {
+        "season": "monsoon",
+        "delta": 0.5,
+        "rmse": 152.65862985825117,
+        "mae": 113.16382008059473,
+        "mbe": 0.5100890124659783,
+        "nrmse": 46.09783862513478,
+        "n": 5671
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.0,
+        "rmse": 79.58704932337226,
+        "mae": 48.37645175839407,
+        "mbe": -0.7150201019294737,
+        "nrmse": 16.796727966410018,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.01,
+        "rmse": 79.06365141431264,
+        "mae": 47.71131751148438,
+        "mbe": -0.5451574657854386,
+        "nrmse": 16.68626561893761,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.02,
+        "rmse": 78.77981092670397,
+        "mae": 47.326177166869364,
+        "mbe": -0.07981665028260242,
+        "nrmse": 16.626361507694025,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.05,
+        "rmse": 78.30530776276947,
+        "mae": 46.7736439281946,
+        "mbe": 0.6636099478735623,
+        "nrmse": 16.526218323198954,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.1,
+        "rmse": 77.9662294621835,
+        "mae": 46.4603566421839,
+        "mbe": 0.951722425888708,
+        "nrmse": 16.454656353975622,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.2,
+        "rmse": 77.7909834416399,
+        "mae": 46.30208392713407,
+        "mbe": 1.072963687425896,
+        "nrmse": 16.417670942915752,
+        "n": 15558
+      },
+      {
+        "season": "non_monsoon",
+        "delta": 0.5,
+        "rmse": 77.73141054529314,
+        "mae": 46.241376518371816,
+        "mbe": 1.1226978607488216,
+        "nrmse": 16.405098172061518,
+        "n": 15558
+      }
+    ],
+    "validation_season_metrics": [
+      {
+        "method": "selected_correction",
+        "season": "all",
+        "n_days": 324,
+        "rmse": 103.02453066603358,
+        "mae": 63.99506771351498,
+        "mbe": 0.8777604627755732,
+        "nrmse": 23.64495526176743,
+        "n": 21229
+      },
+      {
+        "method": "selected_correction",
+        "season": "monsoon",
+        "n_days": 81,
+        "rmse": 152.1732507760527,
+        "mae": 112.70110326527605,
+        "mbe": 0.2057914912242065,
+        "nrmse": 45.95127025475193,
+        "n": 5671
+      },
+      {
+        "method": "selected_correction",
+        "season": "non_monsoon",
+        "n_days": 243,
+        "rmse": 77.73141054529314,
+        "mae": 46.241376518371816,
+        "mbe": 1.1226978607488216,
+        "nrmse": 16.405098172061518,
+        "n": 15558
+      }
+    ]
+  },
+  "selection_rule": "lower_RMSE_and_lower_MAE_than_reference",
+  "development_days": 1293,
+  "first": "2022-01-08",
+  "last": "2025-07-23",
+  "test_scored": false,
+  "manifest_sha256": "8ced70e5e4d9279ad3a7970d203052ccb37e7472dd9768170876ab0a48d654f2",
+  "selected_predictions_sha256": "f8981a20e6e5c0ed9f4351599e65d324cab6ea4fb5a125c5233477fe864c83fd",
+  "correction_validation_sha256": "6017dffc7f6a4f49c872b77c596b32053e426c08a47f961ceb5adde8c087def1",
+  "candidate_predictions_sha256": "a2bacbab9ba9ac52f4368dbcae83a2f655d008704ba6bd26726c0f2dee15effa",
+  "limitations": [
+    "Development-derived climatology is shared across OOF folds.",
+    "Development model and correction selection reuse validation dates.",
+    "The existing test year has been inspected in earlier project iterations."
+  ]
+}

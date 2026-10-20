@@ -1,6 +1,6 @@
 """Stage 0 — turn the merged Solcast CSV into leak-checked per-day arrays and features.
 
-Implements WORKFLOW.md section 7, including the day-completeness policy of section 7a.
+Implements docs/archive/WORKFLOW.md section 7, including the day-completeness policy of section 7a.
 Outputs data/prepared/prep.npz, prep.json and cs_clim_table.npy.
 
 Two deliberate deviations from common.clearsky_climatology, both to make leak test 2
@@ -349,7 +349,7 @@ def baseline_table(kt, cs_proxy, ghi, mask, idx) -> dict:
 # ==========================================================================
 
 def leak_tests(ctx: dict, aux: dict, test_idx: np.ndarray, rng_seed: int = 0) -> dict:
-    """The three tests of WORKFLOW.md section 3. Each returns pass/fail plus the
+    """The three tests of docs/archive/WORKFLOW.md section 3. Each returns pass/fail plus the
     largest absolute feature change observed, which should be exactly 0.
 
     `ctx` is the build_features keyword bundle; `aux` carries what test 2 needs to

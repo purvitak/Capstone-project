@@ -1,6 +1,6 @@
 """Stage 3 — evaluation, paired significance tests, interval calibration, figures.
 
-Implements WORKFLOW.md section 10. The moving-block bootstrap CI is treated as the
+Implements docs/archive/WORKFLOW.md section 10. The moving-block bootstrap CI is treated as the
 primary inferential statement, because overlapping daily forecasts are autocorrelated
 and a test over ~24k 10-minute errors would be badly over-confident.
 

@@ -28,6 +28,7 @@ if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 
 import common as C
+from hgb_training import fit_direct_ghi, predict_direct_kt
 from dwt_utils import (
     daily_clearness,
     dwt_matrix,
@@ -265,6 +266,12 @@ def main() -> None:
     ap.add_argument("--smoke", action="store_true")
     ap.add_argument("--resume", action="store_true")
     ap.add_argument("--backend", choices=("auto", "torch", "hgb"), default="auto")
+    ap.add_argument("--hgb-target", choices=("kt", "ghi"), default="kt")
+    ap.add_argument("--hgb-loss", choices=("squared_error", "absolute_error"), default="squared_error")
+    ap.add_argument("--hgb-max-iter", type=int, default=120)
+    ap.add_argument("--hgb-learning-rate", type=float, default=0.08)
+    ap.add_argument("--hgb-max-leaf-nodes", type=int, default=31)
+    ap.add_argument("--hgb-min-samples-leaf", type=int, default=40)
     args = ap.parse_args()
     if args.epochs < 1 or args.patience < 1 or not 0 < args.val_fraction < 0.5:
         ap.error("epochs/patience must be positive and val-fraction must be between 0 and 0.5")
@@ -302,6 +309,15 @@ def main() -> None:
     backend = "torch" if use_torch else "hgb"
     if args.loss == "ghi" and not use_torch:
         ap.error("--loss ghi requires --backend torch")
+    hgb_options = (args.hgb_target, args.hgb_loss, args.hgb_max_iter,
+                   args.hgb_learning_rate, args.hgb_max_leaf_nodes, args.hgb_min_samples_leaf)
+    custom_hgb = hgb_options != ("kt", "squared_error", 120, 0.08, 31, 40)
+    if custom_hgb and use_torch:
+        ap.error("--hgb-* options require --backend hgb")
+    if args.hgb_target == "ghi" and (hourly or args.residual_baseline != "none"):
+        ap.error("Direct GHI requires 10min resolution and no residual baseline")
+    if args.hgb_max_iter < 1 or args.hgb_learning_rate <= 0 or args.hgb_max_leaf_nodes < 2 or args.hgb_min_samples_leaf < 1:
+        ap.error("Invalid HGB hyperparameters")
     config = {"trainer_version": 2, "backend": backend, "resolution": args.resolution,
               "levels": levels, "leaky": args.leaky_weather_type,
               "epochs": args.epochs, "hidden": args.hidden, "batch_size": args.batch_size,
@@ -315,6 +331,13 @@ def main() -> None:
                       residual_baseline=args.residual_baseline)
     if args.lookback_days != 1:
         config.update(trainer_version=4, lookback_days=args.lookback_days)
+    if custom_hgb:
+        config.update(trainer_version=5, hgb_target=args.hgb_target,
+                      hgb_loss=args.hgb_loss, hgb_max_iter=args.hgb_max_iter,
+                      hgb_learning_rate=args.hgb_learning_rate,
+                      hgb_max_leaf_nodes=args.hgb_max_leaf_nodes,
+                      hgb_min_samples_leaf=args.hgb_min_samples_leaf,
+                      hgb_validation="chronological_purged" if args.hgb_target == "ghi" else "legacy")
     config_json = json.dumps(config, sort_keys=True)
     print(f"[dwt] resolution={args.resolution} levels={levels} leaky={args.leaky_weather_type} "
           f"backend={backend}")
@@ -385,8 +408,26 @@ def main() -> None:
                   f"refit on {len(Xtr)} days")
             pred = net.predict(Xpr)
         else:
-            model = fit_hgb(Xtr, ytr)
-            pred = predict_hgb(model, Xpr)
+            if args.hgb_target == "ghi":
+                model, info = fit_direct_ghi(
+                    Xtr, ghi[train_days], cs[train_days], mask[train_days],
+                    val_fraction=args.val_fraction, loss=args.hgb_loss,
+                    max_iter=args.hgb_max_iter, learning_rate=args.hgb_learning_rate,
+                    max_leaf_nodes=args.hgb_max_leaf_nodes,
+                    min_samples_leaf=args.hgb_min_samples_leaf, seed=args.seed)
+                pred = predict_direct_kt(model, Xpr, cs[pidx])
+            elif custom_hgb:
+                from sklearn.ensemble import HistGradientBoostingRegressor
+                model = HistGradientBoostingRegressor(
+                    loss=args.hgb_loss, max_iter=args.hgb_max_iter,
+                    learning_rate=args.hgb_learning_rate,
+                    max_leaf_nodes=args.hgb_max_leaf_nodes,
+                    min_samples_leaf=args.hgb_min_samples_leaf, random_state=0)
+                model.fit(_flat_hgb_x(Xtr), ytr.ravel())
+                pred = predict_hgb(model, Xpr)
+            else:
+                model = fit_hgb(Xtr, ytr)
+                pred = predict_hgb(model, Xpr)
         if args.residual_baseline == "mean3":
             pred = pred + offset_pr
         pred144 = to_144(pred, hourly)
@@ -446,11 +487,14 @@ def main() -> None:
         return
 
     need = np.concatenate([[purge_idx], test_idx])
+    final_report = out / f"{tag}_base.json"
+    training_info_final = (json.loads(final_report.read_text()).get("final_training", {})
+                           if args.resume and final_report.exists() else {})
     if not (args.resume and np.isfinite(kt_base[need]).all()):
         print(f"[final] fit on {len(dev_idx)} development days")
         t0 = time.time()
         train_days = dev_idx if not args.smoke else dev_idx[:400]
-        train_predict(train_days, need)
+        training_info_final = train_predict(train_days, need)
         print(f"[final] done in {time.time()-t0:.0f}s")
 
     mean3 = C.baseline_mean3_kt(kt)
@@ -465,6 +509,7 @@ def main() -> None:
         "test_rmse_wm2": r_model, "test_mean3_rmse_wm2": r_base,
         "test_skill_vs_mean3": C.skill(r_model, r_base),
         "n_finite": int(np.isfinite(kt_base).any(1).sum()),
+        "final_training": training_info_final,
     }
     print(f"[test] DWT-BiLSTM RMSE {r_model:.2f} vs 3-day {r_base:.2f}  "
           f"skill {summary['test_skill_vs_mean3']*100:+.2f}%")

@@ -1,6 +1,6 @@
 """Stage 2 — out-of-fold residual correction and calibrated 80% intervals.
 
-Implements WORKFLOW.md section 9. The correction may well add nothing; if so this
+Implements docs/archive/WORKFLOW.md section 9. The correction may well add nothing; if so this
 script says so plainly rather than hiding it. Everything is fitted on out-of-fold
 development forecasts only, and delta_max, the boosting iteration count and the
 interval quantiles are all chosen on the validation slice of those OOF days.

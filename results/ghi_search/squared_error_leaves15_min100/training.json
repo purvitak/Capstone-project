@@ -1,0 +1,340 @@
+{
+  "config": {
+    "trainer_version": 5,
+    "backend": "hgb",
+    "resolution": "10min",
+    "features": "context",
+    "target": "ghi",
+    "leaky": false,
+    "smoke": false,
+    "prep_sha256": "56b2e658cbb322c6e1febdfa3e6590d6fd14426fe23824fa605c53a0096ddfc5",
+    "params": {
+      "loss": "squared_error",
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 100,
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "seed": 42
+    },
+    "validation": "chronological_20pct_one_day_purge",
+    "daylight_training": true,
+    "experiment_manifest_sha256": "8ced70e5e4d9279ad3a7970d203052ccb37e7472dd9768170876ab0a48d654f2"
+  },
+  "folds": [
+    {
+      "first": "2022-01-08",
+      "last": "2022-04-07",
+      "training": {
+        "selected_iterations": 71,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 122.9606235046766,
+        "inner_validation_mae_wm2": 84.11110745283028,
+        "inner_train_days": 582,
+        "inner_purge_days": 1,
+        "inner_validation_days": 146,
+        "refit_days": 729,
+        "training_daylight_rows": 48113,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2022-01-06",
+        "inner_last_fit_date": "2021-08-12",
+        "inner_first_validation_date": "2021-08-14"
+      },
+      "seconds": 2.024786167000002
+    },
+    {
+      "first": "2022-04-08",
+      "last": "2022-07-06",
+      "training": {
+        "selected_iterations": 83,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 84.7215957979931,
+        "inner_validation_mae_wm2": 50.35532503639833,
+        "inner_train_days": 654,
+        "inner_purge_days": 1,
+        "inner_validation_days": 164,
+        "refit_days": 819,
+        "training_daylight_rows": 53826,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2022-04-06",
+        "inner_last_fit_date": "2021-10-23",
+        "inner_first_validation_date": "2021-10-25"
+      },
+      "seconds": 2.329315625000163
+    },
+    {
+      "first": "2022-07-07",
+      "last": "2022-10-04",
+      "training": {
+        "selected_iterations": 117,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 101.30995439445452,
+        "inner_validation_mae_wm2": 61.272564272440306,
+        "inner_train_days": 726,
+        "inner_purge_days": 1,
+        "inner_validation_days": 182,
+        "refit_days": 909,
+        "training_daylight_rows": 60198,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2022-07-05",
+        "inner_last_fit_date": "2022-01-03",
+        "inner_first_validation_date": "2022-01-05"
+      },
+      "seconds": 2.9722496659996978
+    },
+    {
+      "first": "2022-10-05",
+      "last": "2023-01-02",
+      "training": {
+        "selected_iterations": 90,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 139.22150255182032,
+        "inner_validation_mae_wm2": 95.80883796253758,
+        "inner_train_days": 798,
+        "inner_purge_days": 1,
+        "inner_validation_days": 200,
+        "refit_days": 999,
+        "training_daylight_rows": 66411,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2022-10-03",
+        "inner_last_fit_date": "2022-03-16",
+        "inner_first_validation_date": "2022-03-18"
+      },
+      "seconds": 2.8793499589996827
+    },
+    {
+      "first": "2023-01-03",
+      "last": "2023-04-02",
+      "training": {
+        "selected_iterations": 86,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 137.6923924537689,
+        "inner_validation_mae_wm2": 97.5706973943908,
+        "inner_train_days": 870,
+        "inner_purge_days": 1,
+        "inner_validation_days": 218,
+        "refit_days": 1089,
+        "training_daylight_rows": 71916,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2023-01-01",
+        "inner_last_fit_date": "2022-05-27",
+        "inner_first_validation_date": "2022-05-29"
+      },
+      "seconds": 3.0058954999999514
+    },
+    {
+      "first": "2023-04-03",
+      "last": "2023-07-01",
+      "training": {
+        "selected_iterations": 98,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 109.58482860339059,
+        "inner_validation_mae_wm2": 70.45718244110527,
+        "inner_train_days": 942,
+        "inner_purge_days": 1,
+        "inner_validation_days": 236,
+        "refit_days": 1179,
+        "training_daylight_rows": 77587,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2023-04-01",
+        "inner_last_fit_date": "2022-08-07",
+        "inner_first_validation_date": "2022-08-09"
+      },
+      "seconds": 3.315742708000016
+    },
+    {
+      "first": "2023-07-02",
+      "last": "2023-09-29",
+      "training": {
+        "selected_iterations": 117,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 83.35802573261661,
+        "inner_validation_mae_wm2": 54.153658189900185,
+        "inner_train_days": 1014,
+        "inner_purge_days": 1,
+        "inner_validation_days": 254,
+        "refit_days": 1269,
+        "training_daylight_rows": 83930,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2023-06-30",
+        "inner_last_fit_date": "2022-10-18",
+        "inner_first_validation_date": "2022-10-20"
+      },
+      "seconds": 3.6976763339998797
+    },
+    {
+      "first": "2023-09-30",
+      "last": "2023-12-28",
+      "training": {
+        "selected_iterations": 98,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 115.43635600539673,
+        "inner_validation_mae_wm2": 75.02322687574781,
+        "inner_train_days": 1086,
+        "inner_purge_days": 1,
+        "inner_validation_days": 272,
+        "refit_days": 1359,
+        "training_daylight_rows": 90168,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2023-09-28",
+        "inner_last_fit_date": "2022-12-29",
+        "inner_first_validation_date": "2022-12-31"
+      },
+      "seconds": 3.719988583000031
+    },
+    {
+      "first": "2023-12-29",
+      "last": "2024-03-27",
+      "training": {
+        "selected_iterations": 94,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 113.21847189708458,
+        "inner_validation_mae_wm2": 74.01941910347176,
+        "inner_train_days": 1158,
+        "inner_purge_days": 1,
+        "inner_validation_days": 290,
+        "refit_days": 1449,
+        "training_daylight_rows": 95711,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2023-12-27",
+        "inner_last_fit_date": "2023-03-11",
+        "inner_first_validation_date": "2023-03-13"
+      },
+      "seconds": 3.9525366249999934
+    },
+    {
+      "first": "2024-03-28",
+      "last": "2024-06-25",
+      "training": {
+        "selected_iterations": 89,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 104.375658237948,
+        "inner_validation_mae_wm2": 66.21815806897935,
+        "inner_train_days": 1230,
+        "inner_purge_days": 1,
+        "inner_validation_days": 308,
+        "refit_days": 1539,
+        "training_daylight_rows": 101339,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2024-03-26",
+        "inner_last_fit_date": "2023-05-22",
+        "inner_first_validation_date": "2023-05-24"
+      },
+      "seconds": 4.100954999999885
+    },
+    {
+      "first": "2024-06-26",
+      "last": "2024-09-23",
+      "training": {
+        "selected_iterations": 99,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 99.47860063823663,
+        "inner_validation_mae_wm2": 60.915654123038436,
+        "inner_train_days": 1302,
+        "inner_purge_days": 1,
+        "inner_validation_days": 326,
+        "refit_days": 1629,
+        "training_daylight_rows": 107662,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2024-06-24",
+        "inner_last_fit_date": "2023-08-02",
+        "inner_first_validation_date": "2023-08-04"
+      },
+      "seconds": 4.588538167000024
+    },
+    {
+      "first": "2024-09-24",
+      "last": "2024-12-22",
+      "training": {
+        "selected_iterations": 79,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 99.63459625599948,
+        "inner_validation_mae_wm2": 63.75375483131374,
+        "inner_train_days": 1374,
+        "inner_purge_days": 1,
+        "inner_validation_days": 344,
+        "refit_days": 1719,
+        "training_daylight_rows": 113927,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2024-09-22",
+        "inner_last_fit_date": "2023-10-13",
+        "inner_first_validation_date": "2023-10-15"
+      },
+      "seconds": 4.395922290999806
+    },
+    {
+      "first": "2024-12-23",
+      "last": "2025-03-22",
+      "training": {
+        "selected_iterations": 83,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 103.94622656301398,
+        "inner_validation_mae_wm2": 66.72901911873937,
+        "inner_train_days": 1446,
+        "inner_purge_days": 1,
+        "inner_validation_days": 362,
+        "refit_days": 1809,
+        "training_daylight_rows": 119498,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2024-12-21",
+        "inner_last_fit_date": "2023-12-24",
+        "inner_first_validation_date": "2023-12-26"
+      },
+      "seconds": 4.695720208000239
+    },
+    {
+      "first": "2025-03-23",
+      "last": "2025-06-20",
+      "training": {
+        "selected_iterations": 72,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 101.2093202703365,
+        "inner_validation_mae_wm2": 64.77410159365675,
+        "inner_train_days": 1518,
+        "inner_purge_days": 1,
+        "inner_validation_days": 380,
+        "refit_days": 1899,
+        "training_daylight_rows": 125084,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2025-03-21",
+        "inner_last_fit_date": "2024-03-05",
+        "inner_first_validation_date": "2024-03-07"
+      },
+      "seconds": 4.748241875000076
+    },
+    {
+      "first": "2025-06-21",
+      "last": "2025-07-23",
+      "training": {
+        "selected_iterations": 83,
+        "iterations_checked": 200,
+        "inner_validation_rmse_wm2": 112.88767926558047,
+        "inner_validation_mae_wm2": 72.88885264635259,
+        "inner_train_days": 1590,
+        "inner_purge_days": 1,
+        "inner_validation_days": 398,
+        "refit_days": 1989,
+        "training_daylight_rows": 131379,
+        "early_stopping": false,
+        "first_train_date": "2020-01-09",
+        "last_train_date": "2025-06-19",
+        "inner_last_fit_date": "2024-05-16",
+        "inner_first_validation_date": "2024-05-18"
+      },
+      "seconds": 5.1696794160002355
+    }
+  ]
+}

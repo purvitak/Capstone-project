@@ -2,6 +2,10 @@
 
 **Status:** working paper source, checked against the project code, saved result files, and the terminal log supplied on 11 October 2026. **Units:** GHI in W/m²; PV power in kW. **Forecast:** one complete next-day profile of 144 ten-minute values, issued at 00:00 India Standard Time (IST). This document contains the results available now; it does not claim that every proposed experiment was successful.
 
+This record describes the original DWT–BiLSTM run. For the later direct-GHI
+hybrid and its 107.42 / 68.95 W/m² test RMSE/MAE, see the
+[latest experiment report](../results/ghi_search/REPORT.md).
+
 ## 1. Paper identity and defensible contribution
 
 **Working title:** *Leak-safe 10-minute day-ahead global horizontal irradiance forecasting for Mumbai using wavelet–BiLSTM prediction and out-of-fold residual correction*.
@@ -150,14 +154,14 @@ Neural combinations with context features, a daylight-weighted GHI loss, and/or 
 | Interval coverage | `results/dwt_10min_150_paper/dwt_intervals.csv` |
 | Descriptive hourly literature comparison | `results/dwt_10min_150_paper/paper_comparison.json`, `paper_comparison.csv` |
 | Complete development ensemble | `results/hybrid/hybrid_development.json` |
-| Three-day-history screen | `results/novelty_3day_screen/dwt_development.json` |
-| Regime-gate validation and bootstrap intervals | `results/novelty_regime_gate/regime_gate_development.json` |
+| Three-day-history screen | `results/archive/novelty_3day_screen/dwt_development.json` |
+| Regime-gate validation and bootstrap intervals | `results/archive/novelty_regime_gate/regime_gate_development.json` |
 
 The dashboard is a useful system demonstration, but figures exported from the evaluator are more stable paper artifacts than screenshots of a running web app.
 
 ## 9. Reproduction from the current project root
 
-The prepared data and completed result artifacts are already present. The raw merged CSV is **not** included under `data/raw/`; reproducing preparation from the source requires obtaining it separately. These commands reproduce the saved selected-model reports or development experiments without retraining everything:
+The prepared data and completed result artifacts are already present. The original merged CSV is now available at `data/raw/solcast_mumbai_merged_2020_2026.csv`; it was moved from the project root without changing its contents. These commands reproduce the saved original-model reports or development experiments without retraining everything:
 
 ```bash
 cd /Users/purvitak/Documents/GitHub/Capstone-project
@@ -171,7 +175,7 @@ python pv_pipeline/experiment_regime_gate.py
 To inspect the completed **three-fold** longer-history screen, the existing `--resume` directory skips its completed folds. Replace the `--out` path with a new directory and omit `--resume` if you want to train it again from scratch:
 
 ```bash
-python pv_pipeline/01_base_dwt_bilstm.py --resolution 10min --backend torch --lookback-days 3 --epochs 100 --fold-indices 2,8,13 --development-only --out results/novelty_3day_screen --resume
+python pv_pipeline/01_base_dwt_bilstm.py --resolution 10min --backend torch --lookback-days 3 --epochs 100 --fold-indices 2,8,13 --development-only --out results/archive/novelty_3day_screen --resume
 ```
 
 The saved selected Stage-1 and Stage-2 training commands were:
