@@ -75,7 +75,7 @@ def main():
     ap.add_argument("--dwt", default=str(C.RESULTS_DIR / "dwt_10min_150_paper/dwt_base_pred.npz"))
     ap.add_argument("--context", default=str(C.RESULTS_DIR / "context_hgb/dwt_base_pred.npz"))
     ap.add_argument("--stage2", default=str(C.RESULTS_DIR / "dwt_10min_150_paper/dwt_stage2.npz"))
-    ap.add_argument("--out", default=str(C.RESULTS_DIR / "novelty_regime_gate"))
+    ap.add_argument("--out", default=str(C.RESULTS_DIR / "archive" / "novelty_regime_gate"))
     args = ap.parse_args()
 
     prep_hash = hashlib.sha256(Path(args.prep).read_bytes()).hexdigest()

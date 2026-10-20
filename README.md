@@ -4,27 +4,32 @@ DWT-BiLSTM predicts 144 ten-minute GHI values for a day, issued at 00:00 IST.
 An out-of-fold residual model corrects forecasts and estimates prediction intervals.
 Published GHI is predicted `kt × cs_proxy`, in W/m².
 
+The latest selected hybrid scores **RMSE 107.42 / MAE 68.95 W/m²** on the
+recorded test year. Start with the [latest results](results/ghi_search/REPORT.md),
+[documentation index](docs/README.md), and [results index](results/README.md).
+
 ## Project layout
 
 ```text
 pv_pipeline/             Preparation, training, correction, and evaluation code
-data/raw/                Original CSVs (not included)
+data/raw/                Original merged Solcast CSV and dataset notes
 data/prepared/           prep.npz, prep.json, cs_clim_table.npy
 results/                 Full-run predictions, metrics, and figures
-results/smoke/           Preserved short-run outputs
 results/verification/    Preserved dataset audit reports
+results/archive/         Earlier neural screens and regime-gate experiments
 dashboard/backend/       Saved-prediction loading and PV calculations
 dashboard/frontend/      Streamlit dashboard UI
-docs/RESEARCH.md         Research direction
+docs/README.md           Documentation index and current sources of truth
 docs/DASHBOARD.md        Dashboard scope and references
-docs/archive/            Historical handoff and workflow
+docs/references/         Literature reviews
+docs/archive/            Historical reports, protocol and legacy Git bundle
 requirements.txt         Python dependencies
 .venv/                   Current local environment
-capstone/                Preserved older nested checkout/environment
 ```
 
-Historical notes describe some removed files. Use this README for current commands.
-The older nested `capstone/` folder is preserved and is not used by these commands.
+Historical notes describe earlier implementations. Use this README for current
+commands. The unused nested checkout/environment was removed; its unique Git
+history is preserved in `docs/archive/legacy-checkout.bundle`.
 
 ## Setup
 
@@ -51,6 +56,7 @@ python pv_pipeline/01_base_dwt_bilstm.py --resolution hourly --backend torch --s
 
 Smoke mode always uses two epochs and incomplete OOF coverage. Keep its outputs
 separate from full training; do not resume full training from smoke checkpoints.
+Smoke output directories are disposable and ignored by Git.
 
 ## Train and build reports
 
@@ -101,7 +107,7 @@ experiment.
 
 ## Rebuild prepared data (optional)
 
-Place the merged original CSV in `data/raw/`:
+The merged original CSV is in `data/raw/`:
 
 ```bash
 python pv_pipeline/verify_dataset.py --csv data/raw/solcast_mumbai_merged_2020_2026.csv
@@ -179,17 +185,82 @@ and `--residual-baseline mean3`. Their screened combinations did not beat the
 existing BiLSTM. `--fold-indices 2,8,13 --development-only` screens selected folds;
 remove `--fold-indices` and resume to complete OOF coverage before comparison.
 
-The [paper-inspired novelty experiments](docs/FOUR_PAPERS_NOVELTY_REVIEW.md)
+## Direct-GHI search for lower RMSE and MAE
+
+The bounded experiment trains eight daylight-only context/DWT HGB models directly
+on GHI: squared/absolute loss × 15/31 leaves × minimum leaf size 40/100. Each uses
+learning rate 0.05 and up to 200 iterations, selected by GHI RMSE on the trailing
+20% of its training days with a one-day purge. Random validation splitting is
+disabled. A fresh tree then refits on all fold-training days. Predictions retain
+the existing clipped clear-sky-index format for downstream compatibility.
+
+Run development selection first (the default), then frozen test evaluation:
+
+```bash
+.venv/bin/python pv_pipeline/experiment_ghi_search.py
+.venv/bin/python pv_pipeline/experiment_ghi_search.py --phase evaluate
+```
+
+`--phase all` performs both stages in sequence. `--out results/ghi_search` and
+`--threads 2` are defaults. Completed folds resume automatically; changed settings,
+source fingerprints, or frozen artifacts are rejected. Use a new output directory
+for a different experiment. The existing saved runs and dashboard default are
+preserved.
+
+The search compares each tree alone and at BiLSTM weights 0.25, 0.50 and 0.75 on
+the same 1,293 development days. A candidate must lower both RMSE and MAE relative
+to the existing hybrid (109.11261 / 69.40719 W/m²); eligible candidates rank by
+RMSE. Otherwise the reference is retained. Only that selection is considered for
+residual correction, with a chronological 75/25 development split and one-day
+purge; correction is retained only if both validation errors decrease.
+
+Outputs include all candidate metrics in `development_metrics.csv`, per-fold
+iteration metadata, `frozen_selection.json`, `test_metrics.csv`, paired seven-day
+block-bootstrap RMSE/MAE intervals in `evaluation.json`, and `REPORT.md`.
+`selected_base_pred.npz` and `selected_stage2.npz` use the existing prediction
+array keys, but are not automatically selected by the dashboard. Test evaluation
+also completes the old hybrid's test forecasts in memory without modifying its
+development artifacts. Its legacy fitting behavior is preserved for comparison.
+
+For a single model through the existing trainer:
+
+```bash
+.venv/bin/python pv_pipeline/01_base_dwt_bilstm.py --backend hgb --features context --hgb-target ghi --hgb-loss squared_error --hgb-max-iter 200 --hgb-learning-rate 0.05 --hgb-max-leaf-nodes 15 --hgb-min-samples-leaf 40 --development-only --out results/direct_ghi_single
+```
+
+`--hgb-target kt` remains the default. New HGB flags are recorded in configuration
+metadata and incompatible checkpoints cannot resume. `--loss ghi` is the separate,
+existing neural weighted-loss option; direct tree targets use `--hgb-target ghi`.
+Tests: `.venv/bin/python -m unittest discover -s tests`.
+
+The experiment keeps the horizon, units and daylight scoring unchanged. No error
+threshold is guaranteed. Development comparisons reuse a shared development-fit
+climatology and validation dates for model selection; the existing test year has
+also been inspected in prior project iterations. These results are exploratory,
+not a new independent confirmation.
+
+Completed run: a 25% BiLSTM / 75% direct-GHI HGB blend was selected on development
+data. Its frozen corrected test forecast scores **RMSE 107.41955 / MAE 68.94594
+W/m²**, versus **114.06405 / 72.34607** for the previous corrected model. The
+uncorrected selection scores **106.99613 / 69.47969**: correction improved both
+development validation metrics, but traded slightly higher test RMSE for lower
+MAE. The completed old hybrid scores **109.31586 / 69.17467** on the test year;
+the smaller gain over that hybrid has confidence intervals including zero.
+Neither error reached 20 W/m². See the [full experiment report](results/ghi_search/REPORT.md).
+The new forecasts are available as `ghi_search/selected` in the dashboard run
+selector; the existing preferred run remains the default.
+
+The [paper-inspired novelty experiments](docs/references/FOUR_PAPERS_NOVELTY_REVIEW.md)
 also screen a three-day DWT-BiLSTM and an issue-time regime gate. The three-day
 model was worse on all three selected folds. The gate's small validation gain
 over a fixed blend is inconclusive, so neither replaces the current reference
 model.
 
 
-## Paper-based PV calculation for the planned dashboard
+## Paper-based PV calculation in the dashboard
 
 `pv_pipeline/pv_model.py` provides the NOCT temperature-adjusted GHI-to-PV formula
-from Shanker & Kulkarni (2026). The dashboard will call it after loading GHI
+from Shanker & Kulkarni (2026). The dashboard calls it after loading GHI
 predictions, using adjustable system capacity and historical temperature proxies.
-There is no separate PV-processing command. See [paper review](docs/SHANKER_KULKARNI_REVIEW.md)
+There is no separate PV-processing command. See [paper review](docs/references/SHANKER_KULKARNI_REVIEW.md)
 and [dashboard calculation contract](docs/DASHBOARD.md).

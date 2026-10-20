@@ -1,4 +1,4 @@
-"""Re-verify every data claim in PIPELINE_WORKFLOW_v3.md against the merged CSV.
+"""Re-verify every data claim in docs/archive/WORKFLOW.md against the merged CSV.
 
 Each check prints VERIFIED / CHANGED / FAILED so that VERIFICATION_STATUS.md can
 be updated from real output rather than from memory. Nothing here fits a
