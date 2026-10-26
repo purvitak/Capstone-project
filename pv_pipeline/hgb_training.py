@@ -28,7 +28,7 @@ def new_model(*, loss="squared_error", max_iter=200, learning_rate=0.05,
         early_stopping=False, random_state=seed, **extra)
 
 
-def fit_direct_ghi(x, ghi, cs, mask, *, val_fraction=0.2, **params):
+def fit_direct_ghi(x, ghi, cs, mask, *, val_fraction=0.2, baseline_ghi=None, **params):
     """Select iterations on trailing training days, purge one day, then refit.
 
     No prediction-day arrays are accepted here. Trees do not require scaling.
@@ -37,6 +37,10 @@ def fit_direct_ghi(x, ghi, cs, mask, *, val_fraction=0.2, **params):
     n, steps, _ = x.shape
     if ghi.shape != (n, steps) or cs.shape != ghi.shape or mask.shape != ghi.shape:
         raise ValueError("Training inputs and day-by-step targets must align")
+    offset = np.zeros_like(ghi) if baseline_ghi is None else np.asarray(baseline_ghi)
+    if offset.shape != ghi.shape or not np.isfinite(offset[mask]).all():
+        raise ValueError("GHI baseline must align and be finite on training daylight")
+    target = ghi - offset
     if not 0 < val_fraction < 0.5 or int(n * (1 - val_fraction)) < 2:
         raise ValueError("Insufficient chronological training/validation days")
     cut = int(n * (1 - val_fraction))
@@ -45,27 +49,33 @@ def fit_direct_ghi(x, ghi, cs, mask, *, val_fraction=0.2, **params):
     val_mask = mask[cut:] & np.isfinite(ghi[cut:])
     if not fit_mask.any() or not val_mask.any():
         raise ValueError("Training and validation need observed daylight targets")
-    model = new_model(**params).fit(flat[:cut - 1][fit_mask], ghi[:cut - 1][fit_mask])
+    model = new_model(**params).fit(flat[:cut - 1][fit_mask], target[:cut - 1][fit_mask])
     cv_cs = cs[cut:][val_mask]
     truth = ghi[cut:][val_mask]
     best = (np.inf, np.inf, 0)
     for iteration, raw in enumerate(model.staged_predict(flat[cut:][val_mask]), 1):
-        error = ghi_to_kt(raw, cv_cs) * cv_cs - truth
+        error = ghi_to_kt(raw + offset[cut:][val_mask], cv_cs) * cv_cs - truth
         score = (float(np.sqrt(np.mean(error ** 2))),
                  float(np.mean(np.abs(error))), iteration)
         if score[:2] < best[:2]:
             best = score
     selected = dict(params, max_iter=best[2])
     all_mask = mask & np.isfinite(ghi)
-    final = new_model(**selected).fit(flat[all_mask], ghi[all_mask])
+    final = new_model(**selected).fit(flat[all_mask], target[all_mask])
     info = {"selected_iterations": best[2], "iterations_checked": model.max_iter,
             "inner_validation_rmse_wm2": best[0], "inner_validation_mae_wm2": best[1],
             "inner_train_days": cut - 1, "inner_purge_days": 1,
             "inner_validation_days": n - cut, "refit_days": n,
             "training_daylight_rows": int(all_mask.sum()), "early_stopping": False}
+    if baseline_ghi is not None:
+        info["target"] = "ghi_residual_to_baseline"
     return final, info
 
 
-def predict_direct_kt(model, x, cs):
+def predict_direct_kt(model, x, cs, baseline_ghi=None):
     raw = model.predict(flat_features(x)).reshape(x.shape[:2])
+    if baseline_ghi is not None:
+        if np.shape(baseline_ghi) != raw.shape or not np.isfinite(baseline_ghi).all():
+            raise ValueError("Prediction GHI baseline must align and be finite")
+        raw = raw + baseline_ghi
     return ghi_to_kt(raw, cs)
