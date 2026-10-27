@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-27",
+  "source": "Real saved selected XGBoost blend; no sample substitution",
+  "available_forecast_dates": {
+    "start": "2025-07-25",
+    "end": "2026-07-24",
+    "days": 365,
+    "intervals_per_day": 144
+  },
+  "tests": {
+    "dashboard": 17,
+    "shared_pipeline": 41,
+    "xgboost_pipeline": 9,
+    "total": 67
+  },
+  "browser": {
+    "real_api_connection": true,
+    "pv_parameters_initially_empty": true,
+    "date_selection": true,
+    "daily_csv_144_real_ghi_intervals": true,
+    "user_entered_pv_and_energy": true,
+    "hourly_plot_click_drilldown": true,
+    "manual_interval_drilldown_and_filtered_csv": true,
+    "back_navigation": true,
+    "clear_pv_restores_unavailable_values": true,
+    "mobile_pv_settings_accessible": true,
+    "mobile_no_horizontal_overflow": true,
+    "browser_uncaught_errors": []
+  },
+  "pv_defaults": {
+    "capacity_kwp": null,
+    "performance_ratio": null
+  },
+  "pv_method": "User-configured illustrative GHI proxy; energy integrates ten-minute period means",
+  "test_screenshot_parameters_only": {
+    "capacity_kwp": 10,
+    "performance_ratio": 0.8,
+    "date": "2026-02-20"
+  },
+  "frozen_numerical_artifacts_unchanged": {
+    "xgboost_base_pred.npz": "c1691434e3fca74048bc30458033bce620862beea79092661eae33a3f4b5a810",
+    "final_model.json": "c65de576715e4461cb1dcab9b738ed6272fd49619a6d2f3e2cf6f0346baeb961",
+    "final_training.json": "eb8626a82fd64370f27daab55e46c1d9143890fd6d6d002a448b846bc4076384"
+  },
+  "backend": "FastAPI read-only API; direct Python adapter also supported",
+  "no_training_or_live_inference": true,
+  "libraries": {
+    "streamlit": "1.65.0",
+    "plotly": "6.9.0",
+    "fastapi": "0.162.0",
+    "uvicorn": "0.54.0",
+    "pandas": "3.0.6",
+    "numpy": "2.4.6"
+  },
+  "startup_command": ".venv/bin/python dashboard/run.py",
+  "desktop_preview": "assets/preview-desktop.png",
+  "interval_preview": "assets/preview-interval.png",
+  "mobile_preview": "assets/preview-mobile.png"
+}

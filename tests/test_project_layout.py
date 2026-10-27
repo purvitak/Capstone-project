@@ -21,9 +21,11 @@ class ProjectLayoutTests(unittest.TestCase):
         self.assertEqual(custom.count("--phase"), 1)
         self.assertEqual(custom[-2:], ["--out", "results/new_run"])
 
-    def test_removed_runtime_components_and_dependency_stay_removed(self):
-        for relative in ("dashboard", "pipelines/attention_nwp", "results/attention_nwp", "pv_pipeline/pv_model.py"):
+    def test_obsolete_components_stay_removed_and_dashboard_dependencies_are_optional(self):
+        for relative in ("pipelines/attention_nwp", "results/attention_nwp", "pv_pipeline/pv_model.py"):
             self.assertFalse((ROOT / relative).exists(), relative)
+        self.assertTrue((ROOT / "dashboard/backend/repository.py").is_file())
+        self.assertTrue((ROOT / "dashboard/requirements.txt").is_file())
         requirements = (ROOT / "requirements.txt").read_text().splitlines()
         self.assertFalse(any(line.lower().startswith("streamlit") for line in requirements))
         self.assertIn("xgboost==3.2.0", requirements)

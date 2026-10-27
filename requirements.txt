@@ -6,3 +6,4 @@ matplotlib
 torch
 xgboost==3.2.0
 threadpoolctl
+PyWavelets==1.8.0

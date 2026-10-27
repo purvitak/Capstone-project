@@ -1,0 +1,14 @@
+{
+  "real_api_connection": true,
+  "pv_parameters_initially_empty": true,
+  "date_selection": true,
+  "daily_csv_144_real_ghi_intervals": true,
+  "user_entered_pv_and_energy": true,
+  "hourly_plot_click_drilldown": true,
+  "manual_interval_drilldown_and_filtered_csv": true,
+  "back_navigation": true,
+  "clear_pv_restores_unavailable_values": true,
+  "mobile_pv_settings_accessible": true,
+  "mobile_no_horizontal_overflow": true,
+  "browser_uncaught_errors": []
+}

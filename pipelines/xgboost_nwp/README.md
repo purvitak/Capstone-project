@@ -62,8 +62,10 @@ Results remain in `results/xgboost_nwp/`, including all candidate OOF records,
 The final tree export does not include a deployable historical-hybrid service;
 complete fresh-day inference still needs that component and feature preparation.
 
-The dashboard and attention experiment have been deleted. The earlier paper draft
-is retained as research material and needs updating before submission.
+This blend is now a component of the final model (`pipelines/nwp_dwt_hybrid/`, run
+with `--nwp-set multi --night-zero`), which the dashboard in `dashboard/` serves. Its
+saved forecasts must stay unchanged: the final model reads `xgboost_base_pred.npz`
+and `trial_development.npz`.
 
 ## Tests
 
