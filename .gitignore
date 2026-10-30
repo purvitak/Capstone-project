@@ -6,3 +6,11 @@
 results/smoke*/
 data/raw/*.csv
 !data/raw/solcast_mumbai_merged_2020_2026.csv
+
+# Kept local only (data, results, reports and papers are not published)
+data/
+results/
+docs/
+PROJECT_CONTEXT.md
+~$*
+*.zip
